@@ -1,0 +1,423 @@
+# yamllint disable rule:line-length
+# cmemc graph import https://text2sparql.aksw.org/data/prod-inst.ttl http://ld.company.org/prod-inst/ ; cmemc graph import https://text2sparql.aksw.org/data/prod-vocab.ttl http://ld.company.org/prod-inst/
+---
+dataset:
+  id: https://text2sparql.aksw.org/2025/corporate/
+  defaultNamespace: http://ld.company.org/prod-vocab/
+questions:
+
+  - question: In which department is Ms. Brant?
+    features:
+      - SELECT
+    classes:
+      - :Department
+      - :Employee
+    properties:
+      - :memberOf
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/empl-Karen.Brant%40company.org> pv:memberOf ?result .
+          ?result  a pv:Department .
+        }
+
+  - question: What is the telephone of Baldwin Dirksen?
+    features:
+      - SELECT
+    classes:
+      - :Employee
+    properties:
+      - :phone
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/empl-Baldwin.Dirksen%40company.org> pv:phone ?result .
+        }
+
+  - question: Who is the manager of Heinrich Hoch?
+    features:
+      - SELECT
+    classes:
+      - :Employee
+      - :Mananger
+    properties:
+      - :hasManager
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/empl-Heinrich.Hoch%40company.org> pv:hasManager ?result .
+        }
+
+  - question: What is the email of Sabrina from Marketing?
+    features:
+      - SELECT
+    classes:
+      - :Department
+      - :Employee
+    properties:
+      - :email
+      - :memberOf
+      - :name
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?department pv:name "Marketing" .
+          ?person pv:memberOf ?department .
+          ?person pv:email ?result .
+          ?person pv:name ?name .
+          FILTER (CONTAINS(?name, "Sabrina"))
+        }
+
+  - question: Who has expertise in Transistors?
+    features:
+      - SELECT
+    classes:
+      - :Employee
+      - :ProductCategory
+    properties:
+      - :areaOfExpertise
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Transistor> .
+        }
+
+  - question: Who is our Sensor expert?
+    features:
+      - SELECT
+    classes:
+      - :Employee
+      - :ProductCategory
+    properties:
+      - :areaOfExpertise
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Sensor> .
+        }
+
+  - question: Who is the manager of the Data Services department?
+    features:
+      - SELECT
+    classes:
+      - :Department
+      - :Mananger
+      - :Employee
+    properties:
+      - :memberOf
+      - :hasManager
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?person pv:memberOf <http://ld.company.org/prod-instances/dept-41622> .
+          ?person pv:hasManager ?result .
+        }
+
+  - question: Which department is responsible for the Sensor Switch M558-2275045?
+    features:
+      - SELECT
+    classes:
+      - :Department
+      - :Hardware
+    properties:
+      - :responsibleFor
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result pv:responsibleFor <http://ld.company.org/prod-instances/hw-M558-2275045> .
+        }
+
+  - question: How many Sensor Switches do we offer?
+    type:
+      - SELECT
+      - COUNT
+    classes:
+      - :Hardware
+      - :ProductCategory
+    properties:
+      - :hasCategory
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT (COUNT(?resultR) as ?result)
+        WHERE
+        {
+          ?resultR pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Sensor> .
+          ?resultR pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Switch> .
+        }
+
+  - question: What is the name of the Network expert from the Marketing Department?
+    features:
+      - SELECT
+    classes:
+      - :Department
+      - :ProductCategory
+      - :Employee
+    properties:
+      - :memberOf
+      - :areaOfExpertise
+      - :name
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?employee pv:memberOf <http://ld.company.org/prod-instances/dept-85880> .
+          ?employee pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Network> .
+          ?employee pv:name ?result .
+        }
+
+  - question: Which departments have Transducer Experts?
+    features:
+      - SELECT
+    classes:
+      - :Department
+      - :Employee
+    properties:
+      - :areaOfExpertise
+      - :memberOf
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?employee pv:memberOf ?result .
+          ?employee pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Transducer> .
+        }
+
+  - question: Which supplier are available to deliver Compensators?
+    features:
+      - SELECT
+    classes:
+      - :Hardware
+      - :ProductCategory
+      - :Supplier
+    properties:
+      - :hasSupplier
+      - :hasCategory
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?hardware pv:hasSupplier ?result .
+          ?hardware pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Compensator> .
+        }
+
+  - question: How many suppliers do we have in France?
+    type:
+      - SELECT
+      - COUNT
+    classes:
+      - :Supplier
+      - :Product
+    properties:
+      - :hasSupplier
+      - :addressCountry
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT (COUNT(DISTINCT ?supplier) as ?result)
+        WHERE
+        {
+          ?product pv:hasSupplier ?supplier .
+          ?supplier pv:addressCountry "France" .
+        }
+
+  - question: Which supplier in France delivers Compensators?
+    features:
+      - SELECT
+    classes:
+      - :Product
+      - :ProductCategory
+      - :Supplier
+    properties:
+      - :hasSupplier
+      - :hasCategory
+      - :addressCountry
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?product pv:hasSupplier ?result .
+          ?product pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Compensator> .
+          ?result pv:addressCountry "France" .
+        }
+
+  - question: What is the cheapest Encoder we can get from a french or german supplier?
+    features:
+      - SELECT
+      - ORDER
+      - FILTER
+      - LIMIT
+    classes:
+      - :Product
+      - :ProductCategory
+      - :Supplier
+      - :Price
+    properties:
+      - :hasCategory
+      - :price
+      - :amount
+      - :hasSupplier
+      - :addressCountry
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Encoder> .
+          ?result pv:price ?priceR .
+          ?priceR pv:amount ?price .
+          ?result pv:hasSupplier ?supplier .
+          ?supplier pv:addressCountry ?country .
+          FILTER ( (?country = "France") ||  (?country = "Germany") )
+        }
+        ORDER BY ASC(?price)
+        LIMIT 1
+
+  - question: Do we have suppliers in Toulouse?
+    features:
+      - ASK
+    classes:
+      - :Product
+      - :Supplier
+    properties:
+      - :hasSupplier
+      - :addressLocality
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        ASK
+        WHERE
+        {
+          ?product pv:hasSupplier ?supplier .
+          ?supplier pv:addressLocality "Toulouse" .
+        }
+
+  - question: Which suppliers do we have in Toulouse?
+    features:
+      - SELECT
+    classes:
+      - :Product
+      - :Supplier
+    properties:
+      - :hasSupplier
+      - :addressLocality
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?product pv:hasSupplier ?result .
+          ?result pv:addressLocality "Toulouse" .
+        }
+
+  - question: What is the cheapest Oscillator we have?
+    features:
+      - SELECT
+      - ORDER
+      - LIMIT
+    classes:
+      - :Product
+      - :ProductCategory
+      - :Price
+    properties:
+      - :hasCategory
+      - :price
+      - :amount
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Oscillator> .
+          ?result pv:price ?priceR .
+          ?priceR pv:amount ?price .
+        }
+        ORDER BY ASC(?price)
+        LIMIT 1
+
+  - question: What is the most expensive service we offer?
+    features:
+      - SELECT
+      - ORDER
+      - LIMIT
+    classes:
+      - :Service
+      - :Price
+    properties:
+      - :price
+      - :amount
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result a pv:Service .
+          ?result pv:price ?priceR .
+          ?priceR pv:amount ?price .
+        }
+        ORDER BY DESC(?price)
+        LIMIT 1
+
+  - question: Who is responsible for the most expensive service we offer?
+    features:
+      - SELECT
+      - ORDER
+      - LIMIT
+    classes:
+      - :Service
+      - :Price
+      - :Employee
+    properties:
+      - :hasProductManager
+      - :price
+      - :amount
+    query:
+      sparql: >
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?service a pv:Service .
+          ?service pv:hasProductManager ?result .
+          ?service pv:price ?priceR .
+          ?priceR pv:amount ?price .
+        }
+        ORDER BY DESC(?price)
+        LIMIT 1
+
