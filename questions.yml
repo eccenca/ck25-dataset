@@ -1,5 +1,4 @@
 # yamllint disable rule:line-length
-# cmemc graph import https://text2sparql.aksw.org/data/prod-inst.ttl http://ld.company.org/prod-inst/ ; cmemc graph import https://text2sparql.aksw.org/data/prod-vocab.ttl http://ld.company.org/prod-inst/
 ---
 dataset:
   id: https://text2sparql.aksw.org/2025/corporate/
@@ -15,7 +14,7 @@ questions:
     properties:
       - :memberOf
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -32,7 +31,7 @@ questions:
     properties:
       - :phone
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -45,11 +44,11 @@ questions:
       - SELECT
     classes:
       - :Employee
-      - :Mananger
+      - :Manager
     properties:
       - :hasManager
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -68,7 +67,7 @@ questions:
       - :memberOf
       - :name
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -89,7 +88,7 @@ questions:
     properties:
       - :areaOfExpertise
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -106,7 +105,7 @@ questions:
     properties:
       - :areaOfExpertise
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -119,13 +118,13 @@ questions:
       - SELECT
     classes:
       - :Department
-      - :Mananger
+      - :Manager
       - :Employee
     properties:
       - :memberOf
       - :hasManager
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -143,7 +142,7 @@ questions:
     properties:
       - :responsibleFor
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -161,7 +160,7 @@ questions:
     properties:
       - :hasCategory
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT (COUNT(?resultR) as ?result)
         WHERE
@@ -182,7 +181,7 @@ questions:
       - :areaOfExpertise
       - :name
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -202,7 +201,7 @@ questions:
       - :areaOfExpertise
       - :memberOf
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -222,7 +221,7 @@ questions:
       - :hasSupplier
       - :hasCategory
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -242,7 +241,7 @@ questions:
       - :hasSupplier
       - :addressCountry
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT (COUNT(DISTINCT ?supplier) as ?result)
         WHERE
@@ -263,7 +262,7 @@ questions:
       - :hasCategory
       - :addressCountry
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -291,7 +290,7 @@ questions:
       - :hasSupplier
       - :addressCountry
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -316,7 +315,7 @@ questions:
       - :hasSupplier
       - :addressLocality
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         ASK
         WHERE
@@ -335,7 +334,7 @@ questions:
       - :hasSupplier
       - :addressLocality
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -358,7 +357,7 @@ questions:
       - :price
       - :amount
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -382,7 +381,7 @@ questions:
       - :price
       - :amount
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
@@ -408,7 +407,7 @@ questions:
       - :price
       - :amount
     query:
-      sparql: >
+      sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
         SELECT DISTINCT ?result
         WHERE
