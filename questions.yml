@@ -152,7 +152,7 @@ questions:
         }
 
   - question: How many Sensor Switches do we offer?
-    type:
+    features:
       - SELECT
       - COUNT
     classes:
@@ -232,7 +232,7 @@ questions:
         }
 
   - question: How many suppliers do we have in France?
-    type:
+    features:
       - SELECT
       - COUNT
     classes:
