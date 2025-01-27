@@ -1,0 +1,18 @@
+<Dataset id="questions-json" type="json" uriProperty="" readOnly="false">
+  <MetaData>
+    <Label>questions.json</Label>
+    <Description xml:space="preserve"><![CDATA[]]></Description>
+    <Modified>2025-01-27T14:39:34.597823338Z</Modified>
+    <Created>2025-01-27T14:39:34.597823338Z</Created>
+    <CreatedByUser>http://eccenca.com/admin</CreatedByUser>
+    <LastModifiedByUser>http://eccenca.com/admin</LastModifiedByUser>
+    <Tags> </Tags>
+  </MetaData>
+  <Param name="zipFileRegex" xml:space="preserve"><![CDATA[^(?!.*[\/\\]\..*$|^\..*$).*\.jsonl?$]]></Param>
+  <Param name="streaming" xml:space="preserve"><![CDATA[true]]></Param>
+  <Param name="maxDepth" xml:space="preserve"><![CDATA[15]]></Param>
+  <Param name="basePath" xml:space="preserve"><![CDATA[]]></Param>
+  <Param name="template" xml:space="preserve"><![CDATA[{{output}}]]></Param>
+  <Param name="file" xml:space="preserve"><![CDATA[questions.json]]></Param>
+  <Param name="uriPattern" xml:space="preserve"><![CDATA[]]></Param>
+</Dataset>

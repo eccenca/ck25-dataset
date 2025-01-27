@@ -1,0 +1,22 @@
+<Dataset id="TEXT2SPARQLQueries_58da6941a0cf7560" type="eccencaDataPlatform" uriProperty="" readOnly="false">
+  <MetaData>
+    <Label>TEXT2SPARQL - Queries</Label>
+    <Description xml:space="preserve"><![CDATA[]]></Description>
+    <Modified>2025-01-27T14:41:25.171584251Z</Modified>
+    <Created>2025-01-27T14:41:25.171584251Z</Created>
+    <CreatedByUser>http://eccenca.com/admin</CreatedByUser>
+    <LastModifiedByUser>http://eccenca.com/admin</LastModifiedByUser>
+    <Tags> </Tags>
+  </MetaData>
+  <Param name="pageSize" xml:space="preserve"><![CDATA[100000]]></Param>
+  <Param name="clearGraphBeforeExecution" xml:space="preserve"><![CDATA[true]]></Param>
+  <Param name="optimizedRetrieve" xml:space="preserve"><![CDATA[true]]></Param>
+  <Param name="pauseTime" xml:space="preserve"><![CDATA[0]]></Param>
+  <Param name="retryCount" xml:space="preserve"><![CDATA[3]]></Param>
+  <Param name="strategy" xml:space="preserve"><![CDATA[parallel]]></Param>
+  <Param name="retryPause" xml:space="preserve"><![CDATA[1000]]></Param>
+  <Param name="endpoint" xml:space="preserve"><![CDATA[default]]></Param>
+  <Param name="graph" xml:space="preserve"><![CDATA[https://text2sparql.aksw.org/2025/corporate/queries/]]></Param>
+  <Param name="entityList" xml:space="preserve"><![CDATA[]]></Param>
+  <Param name="sparqlTimeout" xml:space="preserve"><![CDATA[0]]></Param>
+</Dataset>

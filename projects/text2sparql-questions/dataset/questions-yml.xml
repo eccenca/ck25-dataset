@@ -1,0 +1,16 @@
+<Dataset id="questions-yml" type="text" uriProperty="" readOnly="false">
+  <MetaData>
+    <Label>questions.yml</Label>
+    <Description xml:space="preserve"><![CDATA[]]></Description>
+    <Modified>2025-01-27T14:34:44.185011510Z</Modified>
+    <Created>2025-01-27T14:34:44.185011510Z</Created>
+    <CreatedByUser>http://eccenca.com/service-account-cmem-service-account</CreatedByUser>
+    <LastModifiedByUser>http://eccenca.com/service-account-cmem-service-account</LastModifiedByUser>
+    <Tags> </Tags>
+  </MetaData>
+  <Param name="zipFileRegex" xml:space="preserve"><![CDATA[.*]]></Param>
+  <Param name="typeName" xml:space="preserve"><![CDATA[document]]></Param>
+  <Param name="charset" xml:space="preserve"><![CDATA[UTF-8]]></Param>
+  <Param name="file" xml:space="preserve"><![CDATA[questions.yml]]></Param>
+  <Param name="property" xml:space="preserve"><![CDATA[text]]></Param>
+</Dataset>

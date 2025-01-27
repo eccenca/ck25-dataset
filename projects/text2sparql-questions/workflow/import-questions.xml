@@ -1,0 +1,19 @@
+<Workflow id="import-questions" replaceableInputs="" replaceableOutputs="">
+  <MetaData>
+    <Label>import questions</Label>
+    <Description xml:space="preserve"><![CDATA[]]></Description>
+    <Modified>2025-01-27T14:42:03.873149380Z</Modified>
+    <Created>2025-01-27T14:37:06.243409464Z</Created>
+    <CreatedByUser>http://eccenca.com/admin</CreatedByUser>
+    <LastModifiedByUser>http://eccenca.com/admin</LastModifiedByUser>
+    <Tags> </Tags>
+  </MetaData>
+  <Operator posX="195" posY="270" task="ParseYAML_e22a8844f217ffa1" inputs="questions-yml" outputs="questions-json" errorOutputs="" id="ParseYAML_e22a8844f217ffa1" configInputs="" dependencyInputs=""/>
+  <Operator posX="385" posY="510" task="transform-questions" inputs="questions-json" outputs="TEXT2SPARQLQueries_58da6941a0cf7560" errorOutputs="" id="transform-questions" configInputs="" dependencyInputs=""/>
+  <Dataset posX="105" posY="150" task="questions-yml" inputs="" outputs="ParseYAML_e22a8844f217ffa1" id="questions-yml" configInputs="" dependencyInputs=""/>
+  <Dataset posX="275" posY="390" task="questions-json" inputs="ParseYAML_e22a8844f217ffa1" outputs="transform-questions" id="questions-json" configInputs="" dependencyInputs=""/>
+  <Dataset posX="495" posY="630" task="TEXT2SPARQLQueries_58da6941a0cf7560" inputs="transform-questions" outputs="" id="TEXT2SPARQLQueries_58da6941a0cf7560" configInputs="" dependencyInputs=""/>
+  <UiAnnotations>
+    <StickyNotes> </StickyNotes>
+  </UiAnnotations>
+</Workflow>

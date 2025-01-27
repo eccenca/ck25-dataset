@@ -1,0 +1,292 @@
+<TransformSpec id="transform-questions" abortIfErrorsOccur="false">
+  <MetaData>
+    <Label>Transform questions.json</Label>
+    <Description xml:space="preserve"><![CDATA[]]></Description>
+    <Modified>2025-01-27T15:35:11.756889925Z</Modified>
+    <Created>2025-01-27T14:40:11.780130467Z</Created>
+    <CreatedByUser>http://eccenca.com/admin</CreatedByUser>
+    <LastModifiedByUser>http://eccenca.com/admin</LastModifiedByUser>
+    <Tags> </Tags>
+  </MetaData>
+  <SourceDataset dataSource="questions-json" var="a" typeUri="questions">
+    <RestrictTo xml:space="preserve">
+          
+        </RestrictTo>
+  </SourceDataset>
+  <RootMappingRule id="root">
+    <MappingTarget uri="" isBackwardProperty="false" isAttribute="false">
+      <ValueType nodeType="UriValueType"/>
+    </MappingTarget>
+    <MappingRules>
+      <TransformRule name="uri1">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <TransformInput id="buildUri" function="concat">
+          <TransformInput id="constant0" function="constant">
+            <Param name="value" xml:space="preserve"><![CDATA[https://text2sparql.aksw.org/2025/corporate/queries/]]></Param>
+          </TransformInput>
+          <TransformInput id="encode1" function="urlEncode">
+            <Input id="path1" path="#id"/>
+            <Param name="encoding" xml:space="preserve"><![CDATA[UTF-8]]></Param>
+          </TransformInput>
+          <Param name="glue" xml:space="preserve"><![CDATA[]]></Param>
+          <Param name="missingValuesAsEmptyStrings" xml:space="preserve"><![CDATA[false]]></Param>
+        </TransformInput>
+        <RuleLayout>
+          <NodePositions> </NodePositions>
+        </RuleLayout>
+        <UiAnnotations>
+          <StickyNotes> </StickyNotes>
+        </UiAnnotations>
+      </TransformRule>
+      <TransformRule name="SparqlQuery1">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <TransformInput id="generateType" function="constantUri">
+          <Param name="value" xml:space="preserve"><![CDATA[<https://vocab.eccenca.com/shui/SparqlQuery>]]></Param>
+        </TransformInput>
+        <MappingTarget uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" isBackwardProperty="false" isAttribute="false">
+          <ValueType nodeType="UriValueType"/>
+        </MappingTarget>
+        <RuleLayout>
+          <NodePositions> </NodePositions>
+        </RuleLayout>
+        <UiAnnotations>
+          <StickyNotes> </StickyNotes>
+        </UiAnnotations>
+      </TransformRule>
+      <TransformRule name="label">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <Input id="label" path="question"/>
+        <MappingTarget uri="http://www.w3.org/2000/01/rdf-schema#label" isBackwardProperty="false" isAttribute="true">
+          <ValueType nodeType="StringValueType"/>
+        </MappingTarget>
+        <RuleLayout>
+          <NodePositions> </NodePositions>
+        </RuleLayout>
+        <UiAnnotations>
+          <StickyNotes> </StickyNotes>
+        </UiAnnotations>
+      </TransformRule>
+      <TransformRule name="queryText">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <Input id="queryText" path="query/sparql"/>
+        <MappingTarget uri="https://vocab.eccenca.com/shui/queryText" isBackwardProperty="false" isAttribute="true">
+          <ValueType nodeType="StringValueType"/>
+        </MappingTarget>
+        <RuleLayout>
+          <NodePositions> </NodePositions>
+        </RuleLayout>
+        <UiAnnotations>
+          <StickyNotes> </StickyNotes>
+        </UiAnnotations>
+      </TransformRule>
+      <TransformRule name="queryType">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <TransformInput id="constant" function="constant">
+          <Param name="value" xml:space="preserve"><![CDATA[SELECT]]></Param>
+        </TransformInput>
+        <MappingTarget uri="https://vocab.eccenca.com/shui/queryType" isBackwardProperty="false" isAttribute="true">
+          <ValueType nodeType="StringValueType"/>
+        </MappingTarget>
+        <RuleLayout>
+          <NodePositions>
+            <NodePos id="constant" x="-255" y="-120"/>
+          </NodePositions>
+        </RuleLayout>
+        <UiAnnotations>
+          <StickyNotes> </StickyNotes>
+        </UiAnnotations>
+      </TransformRule>
+      <TransformRule name="created">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <TransformInput id="currentDate" function="currentDate"> </TransformInput>
+        <MappingTarget uri="http://purl.org/dc/terms/created" isBackwardProperty="false" isAttribute="true">
+          <ValueType nodeType="DateTimeValueType"/>
+        </MappingTarget>
+        <RuleLayout>
+          <NodePositions>
+            <NodePos id="currentDate" x="-225" y="-165"/>
+          </NodePositions>
+        </RuleLayout>
+        <UiAnnotations>
+          <StickyNotes> </StickyNotes>
+        </UiAnnotations>
+      </TransformRule>
+      <TransformRule name="created1">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <TransformInput id="currentDate" function="currentDate"> </TransformInput>
+        <MappingTarget uri="http://purl.org/dc/terms/modified" isBackwardProperty="false" isAttribute="true">
+          <ValueType nodeType="DateTimeValueType"/>
+        </MappingTarget>
+        <RuleLayout>
+          <NodePositions>
+            <NodePos id="currentDate" x="-225" y="-165"/>
+          </NodePositions>
+        </RuleLayout>
+        <UiAnnotations>
+          <StickyNotes> </StickyNotes>
+        </UiAnnotations>
+      </TransformRule>
+      <ObjectMapping name="relatedClass" relativePath="">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <MappingRules>
+          <TransformRule name="uri">
+            <MetaData>
+              <Label></Label>
+              <Description xml:space="preserve"><![CDATA[]]></Description>
+              <Tags> </Tags>
+            </MetaData>
+            <TransformInput id="buildUri" function="concat">
+              <TransformInput id="constant0" function="constant">
+                <Param name="value" xml:space="preserve"><![CDATA[http://ld.company.org/prod-vocab/]]></Param>
+              </TransformInput>
+              <TransformInput id="replace" function="replace">
+                <Input id="path1" path="classes"/>
+                <Param name="search" xml:space="preserve"><![CDATA[:]]></Param>
+                <Param name="replace" xml:space="preserve"><![CDATA[]]></Param>
+              </TransformInput>
+              <Param name="glue" xml:space="preserve"><![CDATA[]]></Param>
+              <Param name="missingValuesAsEmptyStrings" xml:space="preserve"><![CDATA[false]]></Param>
+            </TransformInput>
+            <RuleLayout>
+              <NodePositions>
+                <NodePos id="constant0" x="-540" y="-148"/>
+                <NodePos id="encode1" x="90" y="112"/>
+                <NodePos id="replace" x="-555" y="60"/>
+                <NodePos id="path1" x="-870" y="48"/>
+                <NodePos id="buildUri" x="-225" y="-17"/>
+              </NodePositions>
+            </RuleLayout>
+            <UiAnnotations>
+              <StickyNotes> </StickyNotes>
+            </UiAnnotations>
+          </TransformRule>
+        </MappingRules>
+        <MappingTarget uri="https://text2sparql.aksw.org/2025/corporate/queries/relatedClass" isBackwardProperty="false" isAttribute="false">
+          <ValueType nodeType="UriValueType"/>
+        </MappingTarget>
+      </ObjectMapping>
+      <ObjectMapping name="relatedClass1" relativePath="">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <MappingRules>
+          <TransformRule name="uri2">
+            <MetaData>
+              <Label></Label>
+              <Description xml:space="preserve"><![CDATA[]]></Description>
+              <Tags> </Tags>
+            </MetaData>
+            <TransformInput id="buildUri" function="concat">
+              <TransformInput id="constant0" function="constant">
+                <Param name="value" xml:space="preserve"><![CDATA[http://ld.company.org/prod-vocab/]]></Param>
+              </TransformInput>
+              <TransformInput id="replace" function="replace">
+                <Input id="path1" path="properties"/>
+                <Param name="search" xml:space="preserve"><![CDATA[:]]></Param>
+                <Param name="replace" xml:space="preserve"><![CDATA[]]></Param>
+              </TransformInput>
+              <Param name="glue" xml:space="preserve"><![CDATA[]]></Param>
+              <Param name="missingValuesAsEmptyStrings" xml:space="preserve"><![CDATA[false]]></Param>
+            </TransformInput>
+            <RuleLayout>
+              <NodePositions>
+                <NodePos id="constant0" x="-540" y="-148"/>
+                <NodePos id="encode1" x="90" y="112"/>
+                <NodePos id="replace" x="-555" y="60"/>
+                <NodePos id="path1" x="-870" y="48"/>
+                <NodePos id="buildUri" x="-225" y="-17"/>
+              </NodePositions>
+            </RuleLayout>
+            <UiAnnotations>
+              <StickyNotes> </StickyNotes>
+            </UiAnnotations>
+          </TransformRule>
+        </MappingRules>
+        <MappingTarget uri="https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty" isBackwardProperty="false" isAttribute="false">
+          <ValueType nodeType="UriValueType"/>
+        </MappingTarget>
+      </ObjectMapping>
+      <ObjectMapping name="relatedClass2" relativePath="">
+        <MetaData>
+          <Label></Label>
+          <Description xml:space="preserve"><![CDATA[]]></Description>
+          <Tags> </Tags>
+        </MetaData>
+        <MappingRules>
+          <TransformRule name="uri3">
+            <MetaData>
+              <Label></Label>
+              <Description xml:space="preserve"><![CDATA[]]></Description>
+              <Tags> </Tags>
+            </MetaData>
+            <TransformInput id="buildUri" function="concat">
+              <TransformInput id="constant0" function="constant">
+                <Param name="value" xml:space="preserve"><![CDATA[https://text2sparql.aksw.org/2025/corporate/queries/features/]]></Param>
+              </TransformInput>
+              <Input id="path1" path="features"/>
+              <Param name="glue" xml:space="preserve"><![CDATA[]]></Param>
+              <Param name="missingValuesAsEmptyStrings" xml:space="preserve"><![CDATA[false]]></Param>
+            </TransformInput>
+            <RuleLayout>
+              <NodePositions>
+                <NodePos id="constant0" x="-540" y="-148"/>
+                <NodePos id="encode1" x="90" y="112"/>
+                <NodePos id="replace" x="-555" y="60"/>
+                <NodePos id="path1" x="-870" y="48"/>
+                <NodePos id="buildUri" x="-225" y="-17"/>
+              </NodePositions>
+            </RuleLayout>
+            <UiAnnotations>
+              <StickyNotes> </StickyNotes>
+            </UiAnnotations>
+          </TransformRule>
+        </MappingRules>
+        <MappingTarget uri="https://text2sparql.aksw.org/2025/corporate/queries/feature" isBackwardProperty="false" isAttribute="false">
+          <ValueType nodeType="UriValueType"/>
+        </MappingTarget>
+      </ObjectMapping>
+    </MappingRules>
+    <MetaData>
+      <Label></Label>
+      <Description xml:space="preserve"><![CDATA[]]></Description>
+      <Tags> </Tags>
+    </MetaData>
+  </RootMappingRule>
+  <Outputs> </Outputs>
+  <TargetVocabularyCategory>all installed vocabularies</TargetVocabularyCategory>
+  <Params name="selection"></Params>
+</TransformSpec>

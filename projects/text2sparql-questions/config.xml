@@ -1,0 +1,12 @@
+<ProjectConfig resourceUri="http://di.eccenca.com/project/text2sparql-questions">
+  <Prefixes> </Prefixes>
+  <MetaData>
+    <Label>text2sparql-questions</Label>
+    <Description xml:space="preserve"><![CDATA[]]></Description>
+    <Modified>2025-01-27T14:31:05.988742631Z</Modified>
+    <Created>2025-01-27T14:31:05.988742631Z</Created>
+    <CreatedByUser>http://eccenca.com/service-account-cmem-service-account</CreatedByUser>
+    <LastModifiedByUser>http://eccenca.com/service-account-cmem-service-account</LastModifiedByUser>
+    <Tags> </Tags>
+  </MetaData>
+</ProjectConfig>

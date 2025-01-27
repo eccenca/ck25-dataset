@@ -1,0 +1,13 @@
+<CustomTask id="ParseYAML_e22a8844f217ffa1" type="cmem_plugin_yaml-parse"><MetaData>
+        <Label>Parse YAML</Label>
+        <Description xml:space="preserve"><![CDATA[]]></Description>
+        <Modified>2025-01-27T14:38:08.947796132Z</Modified>
+        <Created>2025-01-27T14:38:08.947796132Z</Created>
+        <CreatedByUser>http://eccenca.com/admin</CreatedByUser>
+        <LastModifiedByUser>http://eccenca.com/admin</LastModifiedByUser>
+        <Tags>
+          
+        </Tags>
+      </MetaData>
+        <Param name="input_schema_type" xml:space="preserve"><![CDATA[urn:x-eccenca:yaml-document]]></Param><Param name="input_schema_path" xml:space="preserve"><![CDATA[text]]></Param><Param name="source_code" xml:space="preserve"><![CDATA[# Add your YAML code here (and select 'code' as input mode).]]></Param><Param name="source_mode" xml:space="preserve"><![CDATA[entities]]></Param><Param name="source_file" xml:space="preserve"><![CDATA[]]></Param><Param name="target_dataset" xml:space="preserve"><![CDATA[]]></Param><Param name="target_mode" xml:space="preserve"><![CDATA[entities]]></Param>
+      </CustomTask>

@@ -1,0 +1,440 @@
+@prefix agg: <http://jena.apache.org/ARQ/function/aggregate#> .
+@prefix : <https://vocab.eccenca.com/shacl/> .
+@prefix ecc: <https://ns.eccenca.com/> .
+@prefix geof: <http://www.opengis.net/def/function/geosparql/> .
+@prefix di: <https://vocab.eccenca.com/di/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pv: <http://ld.company.org/prod-vocab/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix path: <http://www.ontotext.com/path#> .
+@prefix eccauthaction: <https://vocab.eccenca.com/auth/Action/> .
+@prefix TableReport: <https://vocab.eccenca.com/shui/TableReport_> .
+@prefix apf: <http://jena.apache.org/ARQ/property#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix shui: <https://vocab.eccenca.com/shui/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix rep: <http://www.openrdf.org/config/repository#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix list: <http://jena.apache.org/ARQ/list#> .
+@prefix prodi: <http://ld.company.org/prod-instances/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix geoext: <http://rdf.useekm.com/ext#> .
+@prefix sesame: <http://www.openrdf.org/schema/sesame#> .
+@prefix math: <http://www.w3.org/2005/xpath-functions/math> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix sail: <http://www.openrdf.org/config/sail#> .
+@prefix dce: <http://purl.org/dc/elements/1.1/> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix eccauth: <https://vocab.eccenca.com/auth/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix array: <http://www.w3.org/2005/xpath-functions/array> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix WidgetIntegration: <https://vocab.eccenca.com/shui/WidgetIntegration_> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix map: <http://www.w3.org/2005/xpath-functions/map> .
+@prefix sr: <http://www.openrdf.org/config/repository/sail#> .
+@prefix rdf4j: <http://rdf4j.org/schema/rdf4j#> .
+@prefix eccdsm: <https://vocab.eccenca.com/dsm/> .
+@prefix c: <https://vocab.eccenca.com/configuration/> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix change: <http://purl.org/vocab/changeset/schema#> .
+@prefix afn: <http://jena.apache.org/ARQ/function#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ofn: <http://www.ontotext.com/sparql/functions/> .
+@prefix graphdb: <http://www.ontotext.com/config/graphdb#> .
+@prefix omgeo: <http://www.ontotext.com/owlim/geo#> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/> a di:Dataset .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/-1773883595> a shui:SparqlQuery;
+  rdfs:label "In which department is Ms. Brant?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  <http://ld.company.org/prod-instances/empl-Karen.Brant%40company.org> pv:memberOf ?result .
+  ?result  a pv:Department .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.636Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.636Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Department,
+    pv:Employee;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:memberOf;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/1312909595> a shui:SparqlQuery;
+  rdfs:label "What is the telephone of Baldwin Dirksen?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  <http://ld.company.org/prod-instances/empl-Baldwin.Dirksen%40company.org> pv:phone ?result .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.636Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.636Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Employee;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:phone;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/1689716359> a shui:SparqlQuery;
+  rdfs:label "Who is the manager of Heinrich Hoch?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  <http://ld.company.org/prod-instances/empl-Heinrich.Hoch%40company.org> pv:hasManager ?result .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Employee, pv:Manager;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasManager;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/1137715301> a shui:SparqlQuery;
+  rdfs:label "What is the email of Sabrina from Marketing?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?department pv:name \"Marketing\" .
+  ?person pv:memberOf ?department .
+  ?person pv:email ?result .
+  ?person pv:name ?name .
+  FILTER (CONTAINS(?name, \"Sabrina\"))
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Department,
+    pv:Employee;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:name, pv:email,
+    pv:memberOf;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/1589975715> a shui:SparqlQuery;
+  rdfs:label "Who has expertise in Transistors?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?result pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Transistor> .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Employee, pv:ProductCategory;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:areaOfExpertise;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/-347751600> a shui:SparqlQuery;
+  rdfs:label "Who is our Sensor expert?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?result pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Sensor> .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Employee, pv:ProductCategory;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:areaOfExpertise;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/-2093102714> a shui:SparqlQuery;
+  rdfs:label "Who is the manager of the Data Services department?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?person pv:memberOf <http://ld.company.org/prod-instances/dept-41622> .
+  ?person pv:hasManager ?result .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Department,
+    pv:Employee, pv:Manager;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasManager,
+    pv:memberOf;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/1121043265> a shui:SparqlQuery;
+  rdfs:label "Which department is responsible for the Sensor Switch M558-2275045?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?result pv:responsibleFor <http://ld.company.org/prod-instances/hw-M558-2275045> .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Department,
+    pv:Hardware;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:responsibleFor;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/1917164602> a shui:SparqlQuery;
+  rdfs:label "How many Sensor Switches do we offer?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT (COUNT(?resultR) as ?result)
+WHERE
+{
+  ?resultR pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Sensor> .
+  ?resultR pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Switch> .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Hardware, pv:ProductCategory;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasCategory;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT>,
+    <https://text2sparql.aksw.org/2025/corporate/queries/features/COUNT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/-403715786> a shui:SparqlQuery;
+  rdfs:label "What is the name of the Network expert from the Marketing Department?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?employee pv:memberOf <http://ld.company.org/prod-instances/dept-85880> .
+  ?employee pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Network> .
+  ?employee pv:name ?result .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Department,
+    pv:Employee, pv:ProductCategory;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:name, pv:areaOfExpertise,
+    pv:memberOf;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/870830882> a shui:SparqlQuery;
+  rdfs:label "Which departments have Transducer Experts?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?employee pv:memberOf ?result .
+  ?employee pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Transducer> .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.637Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Department,
+    pv:Employee;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:areaOfExpertise,
+    pv:memberOf;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/-1950010387> a shui:SparqlQuery;
+  rdfs:label "Which supplier are available to deliver Compensators?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?hardware pv:hasSupplier ?result .
+  ?hardware pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Compensator> .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Hardware, pv:ProductCategory,
+    pv:Supplier;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasCategory,
+    pv:hasSupplier;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/1445406177> a shui:SparqlQuery;
+  rdfs:label "How many suppliers do we have in France?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT (COUNT(DISTINCT ?supplier) as ?result)
+WHERE
+{
+  ?product pv:hasSupplier ?supplier .
+  ?supplier pv:addressCountry \"France\" .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Supplier, pv:Product;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasSupplier,
+    pv:addressCountry;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT>,
+    <https://text2sparql.aksw.org/2025/corporate/queries/features/COUNT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/-1769059304> a shui:SparqlQuery;
+  rdfs:label "Which supplier in France delivers Compensators?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?product pv:hasSupplier ?result .
+  ?product pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Compensator> .
+  ?result pv:addressCountry \"France\" .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:ProductCategory,
+    pv:Supplier, pv:Product;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasCategory,
+    pv:hasSupplier, pv:addressCountry;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/691884422> a shui:SparqlQuery;
+  rdfs:label "What is the cheapest Encoder we can get from a french or german supplier?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Encoder> .
+  ?result pv:price ?priceR .
+  ?priceR pv:amount ?price .
+  ?result pv:hasSupplier ?supplier .
+  ?supplier pv:addressCountry ?country .
+  FILTER ( (?country = \"France\") ||  (?country = \"Germany\") )
+}
+ORDER BY ASC(?price)
+LIMIT 1
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Price, pv:ProductCategory,
+    pv:Supplier, pv:Product;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasCategory,
+    pv:hasSupplier, pv:price, pv:amount, pv:addressCountry;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT>,
+    <https://text2sparql.aksw.org/2025/corporate/queries/features/ORDER>, <https://text2sparql.aksw.org/2025/corporate/queries/features/FILTER>,
+    <https://text2sparql.aksw.org/2025/corporate/queries/features/LIMIT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/-374599461> a shui:SparqlQuery;
+  rdfs:label "Do we have suppliers in Toulouse?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+ASK
+WHERE
+{
+  ?product pv:hasSupplier ?supplier .
+  ?supplier pv:addressLocality \"Toulouse\" .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Supplier, pv:Product;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasSupplier,
+    pv:addressLocality;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/ASK> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/422363328> a shui:SparqlQuery;
+  rdfs:label "Which suppliers do we have in Toulouse?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?product pv:hasSupplier ?result .
+  ?result pv:addressLocality \"Toulouse\" .
+}
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Supplier, pv:Product;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasSupplier,
+    pv:addressLocality;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/574811848> a shui:SparqlQuery;
+  rdfs:label "What is the cheapest Oscillator we have?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Oscillator> .
+  ?result pv:price ?priceR .
+  ?priceR pv:amount ?price .
+}
+ORDER BY ASC(?price)
+LIMIT 1
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Price, pv:ProductCategory,
+    pv:Product;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasCategory,
+    pv:price, pv:amount;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT>,
+    <https://text2sparql.aksw.org/2025/corporate/queries/features/ORDER>, <https://text2sparql.aksw.org/2025/corporate/queries/features/LIMIT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/-55698255> a shui:SparqlQuery;
+  rdfs:label "What is the most expensive service we offer?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?result a pv:Service .
+  ?result pv:price ?priceR .
+  ?priceR pv:amount ?price .
+}
+ORDER BY DESC(?price)
+LIMIT 1
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Price, pv:Service;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:price, pv:amount;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT>,
+    <https://text2sparql.aksw.org/2025/corporate/queries/features/ORDER>, <https://text2sparql.aksw.org/2025/corporate/queries/features/LIMIT> .
+
+<https://text2sparql.aksw.org/2025/corporate/queries/501413330> a shui:SparqlQuery;
+  rdfs:label "Who is responsible for the most expensive service we offer?";
+  shui:queryType "SELECT";
+  shui:queryText """PREFIX pv: <http://ld.company.org/prod-vocab/>
+SELECT DISTINCT ?result
+WHERE
+{
+  ?service a pv:Service .
+  ?service pv:hasProductManager ?result .
+  ?service pv:price ?priceR .
+  ?priceR pv:amount ?price .
+}
+ORDER BY DESC(?price)
+LIMIT 1
+""";
+  dcterms:created "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  dcterms:modified "2025-01-27T15:35:17.638Z"^^xsd:dateTime;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedClass> pv:Employee, pv:Price,
+    pv:Service;
+  <https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty> pv:hasProductManager,
+    pv:price, pv:amount;
+  <https://text2sparql.aksw.org/2025/corporate/queries/feature> <https://text2sparql.aksw.org/2025/corporate/queries/features/SELECT>,
+    <https://text2sparql.aksw.org/2025/corporate/queries/features/ORDER>, <https://text2sparql.aksw.org/2025/corporate/queries/features/LIMIT> .
