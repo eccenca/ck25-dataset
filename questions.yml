@@ -2,10 +2,12 @@
 ---
 dataset:
   id: https://text2sparql.aksw.org/2025/corporate/
+  prefix: cd25
   defaultNamespace: http://ld.company.org/prod-vocab/
 questions:
 
-  - question:
+  - id: 1
+    question:
       en: In which department is Ms. Brant?
     features:
       - SELECT
@@ -24,7 +26,8 @@ questions:
           ?result  a pv:Department .
         }
 
-  - question:
+  - id: 2
+    question:
       en: What is the telephone of Baldwin Dirksen?
     features:
       - SELECT
@@ -41,7 +44,8 @@ questions:
           <http://ld.company.org/prod-instances/empl-Baldwin.Dirksen%40company.org> pv:phone ?result .
         }
 
-  - question:
+  - id: 3
+    question:
       en: Who is the manager of Heinrich Hoch?
     features:
       - SELECT
@@ -59,7 +63,8 @@ questions:
           <http://ld.company.org/prod-instances/empl-Heinrich.Hoch%40company.org> pv:hasManager ?result .
         }
 
-  - question:
+  - id: 4
+    question:
       en: What is the email of Sabrina from Marketing?
     features:
       - SELECT
@@ -83,7 +88,8 @@ questions:
           FILTER (CONTAINS(?name, "Sabrina"))
         }
 
-  - question:
+  - id: 5
+    question:
       en: Who has expertise in Transistors?
     features:
       - SELECT
@@ -101,7 +107,8 @@ questions:
           ?result pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Transistor> .
         }
 
-  - question:
+  - id: 6
+    question:
       en: Who is our Sensor expert?
     features:
       - SELECT
@@ -119,7 +126,8 @@ questions:
           ?result pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Sensor> .
         }
 
-  - question:
+  - id: 7
+    question:
       en: Who is the manager of the Data Services department?
     features:
       - SELECT
@@ -140,7 +148,8 @@ questions:
           ?person pv:hasManager ?result .
         }
 
-  - question:
+  - id: 8
+    question:
       en: Which department is responsible for the Sensor Switch M558-2275045?
     features:
       - SELECT
@@ -158,7 +167,8 @@ questions:
           ?result pv:responsibleFor <http://ld.company.org/prod-instances/hw-M558-2275045> .
         }
 
-  - question:
+  - id: 9
+    question:
       en: How many Sensor Switches do we offer?
     features:
       - SELECT
@@ -178,7 +188,8 @@ questions:
           ?resultR pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Switch> .
         }
 
-  - question:
+  - id: 10
+    question:
       en: What is the name of the Network expert from the Marketing Department?
     features:
       - SELECT
@@ -201,7 +212,8 @@ questions:
           ?employee pv:name ?result .
         }
 
-  - question:
+  - id: 11
+    question:
       en: Which departments have Transducer Experts?
     features:
       - SELECT
@@ -221,7 +233,8 @@ questions:
           ?employee pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Transducer> .
         }
 
-  - question:
+  - id: 12
+    question:
       en: Which supplier are available to deliver Compensators?
     features:
       - SELECT
@@ -242,7 +255,8 @@ questions:
           ?hardware pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Compensator> .
         }
 
-  - question:
+  - id: 13
+    question:
       en: How many suppliers do we have in France?
     features:
       - SELECT
@@ -263,7 +277,8 @@ questions:
           ?supplier pv:addressCountry "France" .
         }
 
-  - question:
+  - id: 14
+    question:
       en: Which supplier in France delivers Compensators?
     features:
       - SELECT
@@ -286,7 +301,8 @@ questions:
           ?result pv:addressCountry "France" .
         }
 
-  - question:
+  - id: 15
+    question:
       en: What is the cheapest Encoder we can get from a french or german supplier?
     features:
       - SELECT
@@ -320,7 +336,8 @@ questions:
         ORDER BY ASC(?price)
         LIMIT 1
 
-  - question:
+  - id: 16
+    question:
       en: Do we have suppliers in Toulouse?
     features:
       - ASK
@@ -340,7 +357,8 @@ questions:
           ?supplier pv:addressLocality "Toulouse" .
         }
 
-  - question:
+  - id: 17
+    question:
       en: Which suppliers do we have in Toulouse?
     features:
       - SELECT
@@ -360,7 +378,8 @@ questions:
           ?result pv:addressLocality "Toulouse" .
         }
 
-  - question:
+  - id: 18
+    question:
       en: What is the cheapest Oscillator we have?
     features:
       - SELECT
@@ -387,7 +406,8 @@ questions:
         ORDER BY ASC(?price)
         LIMIT 1
 
-  - question:
+  - id: 19
+    question:
       en: What is the most expensive service we offer?
     features:
       - SELECT
@@ -412,7 +432,8 @@ questions:
         ORDER BY DESC(?price)
         LIMIT 1
 
-  - question:
+  - id: 20
+    question:
       en: Who is responsible for the most expensive service we offer?
     features:
       - SELECT
