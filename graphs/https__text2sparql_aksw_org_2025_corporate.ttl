@@ -12,9 +12,9 @@
 @prefix TableReport: <https://vocab.eccenca.com/shui/TableReport_> .
 @prefix apf: <http://jena.apache.org/ARQ/property#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix shui: <https://vocab.eccenca.com/shui/> .
-@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix rep: <http://www.openrdf.org/config/repository#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix shui: <https://vocab.eccenca.com/shui/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix void: <http://rdfs.org/ns/void#> .
@@ -49,6 +49,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix ofn: <http://www.ontotext.com/sparql/functions/> .
 @prefix graphdb: <http://www.ontotext.com/config/graphdb#> .
+@prefix QueryPlaceholder: <https://vocab.eccenca.com/shui/QueryPlaceholder_> .
 @prefix omgeo: <http://www.ontotext.com/owlim/geo#> .
 
 <https://text2sparql.aksw.org/2025/corporate/> a void:Dataset;

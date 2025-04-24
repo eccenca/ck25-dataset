@@ -1,10 +1,14 @@
 [ {
   "dataset" : {
     "id" : "https://text2sparql.aksw.org/2025/corporate/",
+    "prefix" : "cd25",
     "defaultNamespace" : "http://ld.company.org/prod-vocab/"
   },
   "questions" : [ {
-    "question" : "In which department is Ms. Brant?",
+    "id" : "1",
+    "question" : {
+      "en" : "In which department is Ms. Brant?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Department", ":Employee" ],
     "properties" : [ ":memberOf" ],
@@ -12,7 +16,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  <http://ld.company.org/prod-instances/empl-Karen.Brant%40company.org> pv:memberOf ?result .\n  ?result  a pv:Department .\n}\n"
     }
   }, {
-    "question" : "What is the telephone of Baldwin Dirksen?",
+    "id" : "2",
+    "question" : {
+      "en" : "What is the telephone of Baldwin Dirksen?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Employee" ],
     "properties" : [ ":phone" ],
@@ -20,7 +27,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  <http://ld.company.org/prod-instances/empl-Baldwin.Dirksen%40company.org> pv:phone ?result .\n}\n"
     }
   }, {
-    "question" : "Who is the manager of Heinrich Hoch?",
+    "id" : "3",
+    "question" : {
+      "en" : "Who is the manager of Heinrich Hoch?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Employee", ":Manager" ],
     "properties" : [ ":hasManager" ],
@@ -28,7 +38,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  <http://ld.company.org/prod-instances/empl-Heinrich.Hoch%40company.org> pv:hasManager ?result .\n}\n"
     }
   }, {
-    "question" : "What is the email of Sabrina from Marketing?",
+    "id" : "4",
+    "question" : {
+      "en" : "What is the email of Sabrina from Marketing?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Department", ":Employee" ],
     "properties" : [ ":email", ":memberOf", ":name" ],
@@ -36,7 +49,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?department pv:name \"Marketing\" .\n  ?person pv:memberOf ?department .\n  ?person pv:email ?result .\n  ?person pv:name ?name .\n  FILTER (CONTAINS(?name, \"Sabrina\"))\n}\n"
     }
   }, {
-    "question" : "Who has expertise in Transistors?",
+    "id" : "5",
+    "question" : {
+      "en" : "Who has expertise in Transistors?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Employee", ":ProductCategory" ],
     "properties" : [ ":areaOfExpertise" ],
@@ -44,7 +60,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?result pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Transistor> .\n}\n"
     }
   }, {
-    "question" : "Who is our Sensor expert?",
+    "id" : "6",
+    "question" : {
+      "en" : "Who is our Sensor expert?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Employee", ":ProductCategory" ],
     "properties" : [ ":areaOfExpertise" ],
@@ -52,7 +71,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?result pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Sensor> .\n}\n"
     }
   }, {
-    "question" : "Who is the manager of the Data Services department?",
+    "id" : "7",
+    "question" : {
+      "en" : "Who is the manager of the Data Services department?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Department", ":Manager", ":Employee" ],
     "properties" : [ ":memberOf", ":hasManager" ],
@@ -60,7 +82,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?person pv:memberOf <http://ld.company.org/prod-instances/dept-41622> .\n  ?person pv:hasManager ?result .\n}\n"
     }
   }, {
-    "question" : "Which department is responsible for the Sensor Switch M558-2275045?",
+    "id" : "8",
+    "question" : {
+      "en" : "Which department is responsible for the Sensor Switch M558-2275045?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Department", ":Hardware" ],
     "properties" : [ ":responsibleFor" ],
@@ -68,7 +93,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?result pv:responsibleFor <http://ld.company.org/prod-instances/hw-M558-2275045> .\n}\n"
     }
   }, {
-    "question" : "How many Sensor Switches do we offer?",
+    "id" : "9",
+    "question" : {
+      "en" : "How many Sensor Switches do we offer?"
+    },
     "features" : [ "SELECT", "COUNT" ],
     "classes" : [ ":Hardware", ":ProductCategory" ],
     "properties" : [ ":hasCategory" ],
@@ -76,7 +104,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT (COUNT(?resultR) as ?result)\nWHERE\n{\n  ?resultR pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Sensor> .\n  ?resultR pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Switch> .\n}\n"
     }
   }, {
-    "question" : "What is the name of the Network expert from the Marketing Department?",
+    "id" : "10",
+    "question" : {
+      "en" : "What is the name of the Network expert from the Marketing Department?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Department", ":ProductCategory", ":Employee" ],
     "properties" : [ ":memberOf", ":areaOfExpertise", ":name" ],
@@ -84,7 +115,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?employee pv:memberOf <http://ld.company.org/prod-instances/dept-85880> .\n  ?employee pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Network> .\n  ?employee pv:name ?result .\n}\n"
     }
   }, {
-    "question" : "Which departments have Transducer Experts?",
+    "id" : "11",
+    "question" : {
+      "en" : "Which departments have Transducer Experts?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Department", ":Employee" ],
     "properties" : [ ":areaOfExpertise", ":memberOf" ],
@@ -92,7 +126,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?employee pv:memberOf ?result .\n  ?employee pv:areaOfExpertise <http://ld.company.org/prod-instances/prod-cat-Transducer> .\n}\n"
     }
   }, {
-    "question" : "Which supplier are available to deliver Compensators?",
+    "id" : "12",
+    "question" : {
+      "en" : "Which supplier are available to deliver Compensators?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Hardware", ":ProductCategory", ":Supplier" ],
     "properties" : [ ":hasSupplier", ":hasCategory" ],
@@ -100,7 +137,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?hardware pv:hasSupplier ?result .\n  ?hardware pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Compensator> .\n}\n"
     }
   }, {
-    "question" : "How many suppliers do we have in France?",
+    "id" : "13",
+    "question" : {
+      "en" : "How many suppliers do we have in France?"
+    },
     "features" : [ "SELECT", "COUNT" ],
     "classes" : [ ":Supplier", ":Product" ],
     "properties" : [ ":hasSupplier", ":addressCountry" ],
@@ -108,7 +148,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT (COUNT(DISTINCT ?supplier) as ?result)\nWHERE\n{\n  ?product pv:hasSupplier ?supplier .\n  ?supplier pv:addressCountry \"France\" .\n}\n"
     }
   }, {
-    "question" : "Which supplier in France delivers Compensators?",
+    "id" : "14",
+    "question" : {
+      "en" : "Which supplier in France delivers Compensators?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Product", ":ProductCategory", ":Supplier" ],
     "properties" : [ ":hasSupplier", ":hasCategory", ":addressCountry" ],
@@ -116,7 +159,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?product pv:hasSupplier ?result .\n  ?product pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Compensator> .\n  ?result pv:addressCountry \"France\" .\n}\n"
     }
   }, {
-    "question" : "What is the cheapest Encoder we can get from a french or german supplier?",
+    "id" : "15",
+    "question" : {
+      "en" : "What is the cheapest Encoder we can get from a french or german supplier?"
+    },
     "features" : [ "SELECT", "ORDER", "FILTER", "LIMIT" ],
     "classes" : [ ":Product", ":ProductCategory", ":Supplier", ":Price" ],
     "properties" : [ ":hasCategory", ":price", ":amount", ":hasSupplier", ":addressCountry" ],
@@ -124,7 +170,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Encoder> .\n  ?result pv:price ?priceR .\n  ?priceR pv:amount ?price .\n  ?result pv:hasSupplier ?supplier .\n  ?supplier pv:addressCountry ?country .\n  FILTER ( (?country = \"France\") ||  (?country = \"Germany\") )\n}\nORDER BY ASC(?price)\nLIMIT 1\n"
     }
   }, {
-    "question" : "Do we have suppliers in Toulouse?",
+    "id" : "16",
+    "question" : {
+      "en" : "Do we have suppliers in Toulouse?"
+    },
     "features" : [ "ASK" ],
     "classes" : [ ":Product", ":Supplier" ],
     "properties" : [ ":hasSupplier", ":addressLocality" ],
@@ -132,7 +181,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nASK\nWHERE\n{\n  ?product pv:hasSupplier ?supplier .\n  ?supplier pv:addressLocality \"Toulouse\" .\n}\n"
     }
   }, {
-    "question" : "Which suppliers do we have in Toulouse?",
+    "id" : "17",
+    "question" : {
+      "en" : "Which suppliers do we have in Toulouse?"
+    },
     "features" : [ "SELECT" ],
     "classes" : [ ":Product", ":Supplier" ],
     "properties" : [ ":hasSupplier", ":addressLocality" ],
@@ -140,7 +192,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?product pv:hasSupplier ?result .\n  ?result pv:addressLocality \"Toulouse\" .\n}\n"
     }
   }, {
-    "question" : "What is the cheapest Oscillator we have?",
+    "id" : "18",
+    "question" : {
+      "en" : "What is the cheapest Oscillator we have?"
+    },
     "features" : [ "SELECT", "ORDER", "LIMIT" ],
     "classes" : [ ":Product", ":ProductCategory", ":Price" ],
     "properties" : [ ":hasCategory", ":price", ":amount" ],
@@ -148,7 +203,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Oscillator> .\n  ?result pv:price ?priceR .\n  ?priceR pv:amount ?price .\n}\nORDER BY ASC(?price)\nLIMIT 1\n"
     }
   }, {
-    "question" : "What is the most expensive service we offer?",
+    "id" : "19",
+    "question" : {
+      "en" : "What is the most expensive service we offer?"
+    },
     "features" : [ "SELECT", "ORDER", "LIMIT" ],
     "classes" : [ ":Service", ":Price" ],
     "properties" : [ ":price", ":amount" ],
@@ -156,7 +214,10 @@
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?result a pv:Service .\n  ?result pv:price ?priceR .\n  ?priceR pv:amount ?price .\n}\nORDER BY DESC(?price)\nLIMIT 1\n"
     }
   }, {
-    "question" : "Who is responsible for the most expensive service we offer?",
+    "id" : "20",
+    "question" : {
+      "en" : "Who is responsible for the most expensive service we offer?"
+    },
     "features" : [ "SELECT", "ORDER", "LIMIT" ],
     "classes" : [ ":Service", ":Price", ":Employee" ],
     "properties" : [ ":hasProductManager", ":price", ":amount" ],

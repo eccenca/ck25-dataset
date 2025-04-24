@@ -2,7 +2,7 @@
   <MetaData>
     <Label>Transform questions.json</Label>
     <Description xml:space="preserve"><![CDATA[]]></Description>
-    <Modified>2025-01-27T15:35:11.756889925Z</Modified>
+    <Modified>2025-04-24T17:27:49.644272173Z</Modified>
     <Created>2025-01-27T14:40:11.780130467Z</Created>
     <CreatedByUser>http://eccenca.com/admin</CreatedByUser>
     <LastModifiedByUser>http://eccenca.com/admin</LastModifiedByUser>
@@ -29,14 +29,19 @@
             <Param name="value" xml:space="preserve"><![CDATA[https://text2sparql.aksw.org/2025/corporate/queries/]]></Param>
           </TransformInput>
           <TransformInput id="encode1" function="urlEncode">
-            <Input id="path1" path="#id"/>
+            <Input id="path1" path="id"/>
             <Param name="encoding" xml:space="preserve"><![CDATA[UTF-8]]></Param>
           </TransformInput>
           <Param name="glue" xml:space="preserve"><![CDATA[]]></Param>
           <Param name="missingValuesAsEmptyStrings" xml:space="preserve"><![CDATA[false]]></Param>
         </TransformInput>
         <RuleLayout>
-          <NodePositions> </NodePositions>
+          <NodePositions>
+            <NodePos id="constant0" x="0" y="-111"/>
+            <NodePos id="path1" x="-360" y="75"/>
+            <NodePos id="encode1" x="0" y="89"/>
+            <NodePos id="buildUri" x="360" y="-52"/>
+          </NodePositions>
         </RuleLayout>
         <UiAnnotations>
           <StickyNotes> </StickyNotes>
@@ -67,7 +72,7 @@
           <Description xml:space="preserve"><![CDATA[]]></Description>
           <Tags> </Tags>
         </MetaData>
-        <Input id="label" path="question"/>
+        <Input id="label" path="question/en"/>
         <MappingTarget uri="http://www.w3.org/2000/01/rdf-schema#label" isBackwardProperty="false" isAttribute="true">
           <ValueType nodeType="StringValueType"/>
         </MappingTarget>
