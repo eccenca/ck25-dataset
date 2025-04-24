@@ -461,3 +461,180 @@ questions:
         ORDER BY DESC(?price)
         LIMIT 1
 
+  - id: 21
+    question:
+      en: What is the heaviest coil that does not exceed a base area of 15x15 milimeter?
+    features:
+      - SELECT
+      - ORDER
+      - LIMIT
+    classes:
+      - :Product
+      - :ProductCategory
+    properties:
+      - :hasCategory
+      - :weight_g
+      - :width_mm
+      - :depth_mm
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Coil> .
+          ?result pv:weight_g ?weight_g .
+          ?result pv:width_mm ?width_mm .
+          ?result pv:depth_mm ?depth_mm .
+          FILTER (?width_mm <= 15)
+          FILTER (?depth_mm <= 15)
+        }
+        ORDER BY DESC(?weight_g)
+        LIMIT 1
+
+  - id: 22
+    question:
+      en: What products are compatible with the U990 LCD Inductor?
+    features:
+      - SELECT
+    classes:
+      - :Product
+      - :Hardware
+    properties:
+      - :compatibleProduct
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/hw-U990-5234138> pv:compatibleProduct ?result .
+        }
+
+  - id: 23
+    question:
+      en: What products can I get from US suppliers that are compatible with the U990 LCD Inductor?
+    features:
+      - SELECT
+    classes:
+      - :Hardware
+      - :Supplier
+    properties:
+      - :compatibleProduct
+      - :hasSupplier
+      - :country
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/hw-U990-5234138> pv:compatibleProduct ?result .
+          ?result pv:hasSupplier ?supplier .
+          ?supplier pv:country <http://dbpedia.org/resource/United_States> .
+        }
+
+  - id: 24
+    question:
+      en: What is the pontiometer with the smallest volume?
+    features:
+      - SELECT
+      - ORDER
+      - LIMIT
+      - BIND
+    classes:
+      - :ProductCategory
+      - :Product
+    properties:
+      - :hasCategory
+      - :width_mm
+      - :depth_mm
+      - :height_mm
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Potentiometer> .
+          ?result pv:width_mm ?width_mm .
+          ?result pv:depth_mm ?depth_mm .
+          ?result pv:height_mm ?height_mm .
+          BIND(?width_mm * ?depth_mm * ?height_mm as ?volume)
+        }
+        ORDER BY ASC(?volume)
+        LIMIT 1
+
+  - id: 25
+    question:
+      en: Which coil has the highest density?
+    features:
+      - SELECT
+      - ORDER
+      - LIMIT
+      - BIND
+    classes:
+      - :ProductCategory
+      - :Product
+    properties:
+      - :hasCategory
+      - :width_mm
+      - :depth_mm
+      - :height_mm
+      - :weight_g
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Coil> .
+          ?result pv:width_mm ?width_mm .
+          ?result pv:depth_mm ?depth_mm .
+          ?result pv:height_mm ?height_mm .
+          ?result pv:weight_g ?weight_g .
+          BIND(?width_mm * ?depth_mm * ?height_mm / 1000000000 AS ?volume_m3)
+          BIND(?weight_g / 1000 AS ?weight_kg)
+          BIND(?weight_kg / ?volume_m3 AS ?density)
+        }
+        ORDER BY DESC(?density)
+        LIMIT 1
+
+  - id: 26
+    question:
+      en: In which cities are our US suppliers for LCDs?
+    features:
+      - SELECT
+    classes:
+      - :Supplier
+      - :ProductCategory
+    properties:
+      - :hasCategory
+      - :hasSupplier
+      - :country
+      - :addressLocality
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?product pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-LCD> .
+          ?product pv:hasSupplier ?supplier .
+          ?supplier pv:country <http://dbpedia.org/resource/United_States> .
+          ?supplier pv:addressLocality ?result .
+        }
+
+  # - id: xx
+  #   question:
+  #     en: ...
+  #   features:
+  #     - ...
+  #   classes:
+  #     - ...
+  #   properties:
+  #     - ...
+  #   query:
+  #     sparql: |
+  #       ...
+
