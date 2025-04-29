@@ -6,6 +6,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix pv: <http://ld.company.org/prod-vocab/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ns1: <http://creativecommons.org/ns#> .
 @prefix spif: <http://spinrdf.org/spif#> .
 @prefix path: <http://www.ontotext.com/path#> .
 @prefix eccauthaction: <https://vocab.eccenca.com/auth/Action/> .
