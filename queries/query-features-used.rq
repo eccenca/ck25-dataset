@@ -1,0 +1,24 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX q: <https://text2sparql.aksw.org/2025/corporate/queries/>
+PREFIX shui: <https://vocab.eccenca.com/shui/>
+
+SELECT ?table_line
+FROM <https://text2sparql.aksw.org/2025/corporate/>
+WHERE
+{
+  {
+    SELECT DISTINCT 
+      ?Feature 
+      (COUNT(?query) AS ?Queries) 
+      ((?Queries / 25 * 100) AS ?Percent) 
+    WHERE {
+      ?query a shui:SparqlQuery .
+      ?query q:feature ?featureR.
+      BIND (REPLACE(STR(?featureR), "https://text2sparql.aksw.org/2025/corporate/queries/features/", "") AS ?Feature)
+    } 
+    GROUP BY ?Feature
+    ORDER BY DESC(?Queries)
+  }
+  BIND (CONCAT(STR(?Feature), " & ", STR(?Queries), " & ", STR(?Percent), " \\\\") AS ?table_line)
+}
+

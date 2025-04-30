@@ -1,0 +1,14 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX q: <https://text2sparql.aksw.org/2025/corporate/queries/>
+
+SELECT DISTINCT ?Class (COUNT(?query) AS ?Queries)
+FROM <https://text2sparql.aksw.org/2025/corporate/>
+WHERE
+{
+  ?ClassR a owl:Class .
+  OPTIONAL {?query q:relatedClass ?ClassR .}
+  FILTER STRSTARTS(STR(?ClassR), "http://ld.company.org/prod-vocab/")
+  BIND (REPLACE(STR(?ClassR), "http://ld.company.org/prod-vocab/", "") AS ?Class)
+}
+GROUP BY ?Class
+ORDER BY DESC(?Queries)

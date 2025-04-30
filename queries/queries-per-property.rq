@@ -1,0 +1,15 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX q: <https://text2sparql.aksw.org/2025/corporate/queries/>
+
+SELECT DISTINCT ?Property (COUNT(?query) AS ?Queries)
+FROM <https://text2sparql.aksw.org/2025/corporate/>
+WHERE
+{
+  ?PropertyR a ?PropertyClass .
+  FILTER (?PropertyClass IN (owl:DatatypeProperty, owl:ObjectProperty))
+  OPTIONAL {?query q:relatedProperty ?PropertyR .}
+  FILTER STRSTARTS(STR(?PropertyR), "http://ld.company.org/prod-vocab/")
+  BIND (REPLACE(STR(?PropertyR), "http://ld.company.org/prod-vocab/", "") AS ?Property)
+}
+GROUP BY ?Property
+ORDER BY DESC(?Queries)
