@@ -24,6 +24,6 @@ WHERE
     GROUP BY ?Feature ?nrOfQry
     ORDER BY DESC(?Queries)
   }
-  BIND (CONCAT(STR(?Feature), " & ", STR(?Queries), " & ", STR(?Percent), " \\\\") AS ?table_line)
+  BIND (CONCAT(STR(?Feature), " & ", STR(?Queries), " & ", STR(?Percent), " \\% \\\\") AS ?table_line)
 }
 
