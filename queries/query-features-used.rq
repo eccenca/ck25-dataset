@@ -10,13 +10,18 @@ WHERE
     SELECT DISTINCT 
       ?Feature 
       (COUNT(?query) AS ?Queries) 
-      ((?Queries / 25 * 100) AS ?Percent) 
+      (ROUND(?Queries / ?nrOfQry * 100) AS ?Percent) 
     WHERE {
+      {
+        SELECT (0 + COUNT(?q) AS ?nrOfQry) WHERE {
+          ?q a shui:SparqlQuery .
+        }
+      }
       ?query a shui:SparqlQuery .
       ?query q:feature ?featureR.
       BIND (REPLACE(STR(?featureR), "https://text2sparql.aksw.org/2025/corporate/queries/features/", "") AS ?Feature)
     } 
-    GROUP BY ?Feature
+    GROUP BY ?Feature ?nrOfQry
     ORDER BY DESC(?Queries)
   }
   BIND (CONCAT(STR(?Feature), " & ", STR(?Queries), " & ", STR(?Percent), " \\\\") AS ?table_line)
