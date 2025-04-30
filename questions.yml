@@ -663,7 +663,7 @@ questions:
     features:
       - ASK
       - FILTER
-      - SUB SELECT
+      - SUBSELECT
     classes:
       - :Service
       - :BillOfMaterial
@@ -889,7 +889,7 @@ questions:
     classes:
       - :Product
       - :Price
-      - owl:Class
+      # - owl:Class
     properties:
       - :compatibleProduct
       - :amount
@@ -1069,7 +1069,7 @@ questions:
       en: For each manager, what percentage of their entire team work in the same department as the manager?
     features:
       - SELECT
-      - SUB SELECT
+      - SUBSELECT
       - GROUP
       - COUNT
     classes:
@@ -1110,7 +1110,7 @@ questions:
       en: Which Bill-of-Material has the highest average unit cost of its hardware parts, and what is that average?
     features:
       - SELECT
-      - SUB SELECT
+      - SUBSELECT
       - GROUP
       - AVG
       - SUM

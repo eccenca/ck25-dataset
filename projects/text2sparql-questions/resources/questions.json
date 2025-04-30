@@ -299,7 +299,7 @@
     "classes" : [ ":Employee" ],
     "properties" : [ ":name", ":email", ":phone", ":hasManager" ],
     "query" : {
-      "sparql" : "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?empl ?name ?email ?phone \nWHERE {\n  ?emplClass rdfs:subClassOf* pv:Employee .\n  ?empl a ?emplClass ;\n      pv:name ?name ;\n      pv:email ?email .\n  OPTIONAL { ?empl pv:phone ?phone }\n  FILTER NOT EXISTS { [] pv:hasManager ?empl . }\n}\nORDER BY ?name\n"
+      "sparql" : "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?empl ?name ?email ?phone\nWHERE {\n  ?emplClass rdfs:subClassOf* pv:Employee .\n  ?empl a ?emplClass ;\n      pv:name ?name ;\n      pv:email ?email .\n  OPTIONAL { ?empl pv:phone ?phone }\n  FILTER NOT EXISTS { [] pv:hasManager ?empl . }\n}\nORDER BY ?name\n"
     }
   }, {
     "id" : "28",
@@ -310,7 +310,7 @@
     "classes" : [ ":Service", ":BillOfMaterial", ":BomPart", ":Supplier", ":Hardware" ],
     "properties" : [ ":hasBomPart", ":hasPart", ":hasSupplier", ":addressCountry", ":eligibleFor" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nASK \nWHERE {\n  { # all BOMs with parts from russia\n    SELECT ?bom\n    WHERE {\n      ?bom pv:hasBomPart ?bomPart .\n      ?bomPart pv:hasPart ?hw .\n      ?hw pv:hasSupplier ?suppl .\n      ?suppl pv:addressCountry ?country .\n      FILTER (CONTAINS(LCASE(?country), LCASE(\"Russia\")))\n    }\n  }\n  \n  # services eligible for parts associated with these BOMs?\n  ?s a pv:Service .\n  ?s pv:eligibleFor ?hw .\n  ?bom pv:hasBomPart ?bomPart .\n  ?bomPart pv:hasPart ?hw .\n}\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nASK\nWHERE {\n  { # all BOMs with parts from russia\n    SELECT ?bom\n    WHERE {\n      ?bom pv:hasBomPart ?bomPart .\n      ?bomPart pv:hasPart ?hw .\n      ?hw pv:hasSupplier ?suppl .\n      ?suppl pv:addressCountry ?country .\n      FILTER (CONTAINS(LCASE(?country), LCASE(\"Russia\")))\n    }\n  }\n\n  # services eligible for parts associated with these BOMs?\n  ?s a pv:Service .\n  ?s pv:eligibleFor ?hw .\n  ?bom pv:hasBomPart ?bomPart .\n  ?bomPart pv:hasPart ?hw .\n}\n"
     }
   }, {
     "id" : "29",
@@ -321,7 +321,7 @@
     "classes" : [ ":Supplier", ":Hardware", ":Price" ],
     "properties" : [ ":name", ":hasSupplier", ":amount", ":currency", ":addressCountry" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?name ?country ?price \nWHERE {\n  ?sup a pv:Supplier ;\n    pv:addressCountry ?country ;\n  pv:name ?name .\n  ?hw a pv:Hardware ;\n  pv:price/pv:amount ?price ;\n    pv:price/pv:currency \"EUR\" ;\n    pv:hasSupplier ?sup .\n}\nORDER BY DESC(?price)\nLIMIT 5 OFFSET 10\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?name ?country ?price\nWHERE {\n  ?sup a pv:Supplier ;\n    pv:addressCountry ?country ;\n  pv:name ?name .\n  ?hw a pv:Hardware ;\n  pv:price/pv:amount ?price ;\n    pv:price/pv:currency \"EUR\" ;\n    pv:hasSupplier ?sup .\n}\nORDER BY DESC(?price)\nLIMIT 5 OFFSET 10\n"
     }
   }, {
     "id" : "30",
@@ -332,7 +332,7 @@
     "classes" : [ ":Department", ":Employee" ],
     "properties" : [ ":name", ":memberOf" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?name (COUNT(?emp) AS ?numEmployees) \nWHERE {\n  ?dept a pv:Department ;\n    pv:name ?name .\n  ?emp a pv:Employee ;\n    pv:memberOf ?dept .\n}\nGROUP BY ?depty ?name\nHAVING (COUNT(?emp) > 5)\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?name (COUNT(?emp) AS ?numEmployees)\nWHERE {\n  ?dept a pv:Department ;\n    pv:name ?name .\n  ?emp a pv:Employee ;\n    pv:memberOf ?dept .\n}\nGROUP BY ?depty ?name\nHAVING (COUNT(?emp) > 5)\n"
     }
   }, {
     "id" : "31",
@@ -343,7 +343,7 @@
     "classes" : [ ":ProductCategory", ":Hardware" ],
     "properties" : [ ":hasCategory", ":weight_g", ":name" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?cat (MIN(?w) AS ?minWeight) (MAX(?w) AS ?maxWeight) \nWHERE {\n  ?catItem a pv:ProductCategory ;\n    pv:name ?cat .\n  ?hw a pv:Hardware ;\n    pv:hasCategory ?catItem ;\n    pv:weight_g ?w .\n}\nGROUP BY ?cat\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?cat (MIN(?w) AS ?minWeight) (MAX(?w) AS ?maxWeight)\nWHERE {\n  ?catItem a pv:ProductCategory ;\n    pv:name ?cat .\n  ?hw a pv:Hardware ;\n    pv:hasCategory ?catItem ;\n    pv:weight_g ?w .\n}\nGROUP BY ?cat\n"
     }
   }, {
     "id" : "32",
@@ -365,7 +365,7 @@
     "classes" : [ ":Department", ":Manager" ],
     "properties" : [ ":memberOf" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nASK\nWHERE {\n  ?dept a pv:Department .\n  FILTER NOT EXISTS { \n    ?m pv:memberOf ?dept . \n    ?m a pv:Manager .\n  }\n}\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nASK\nWHERE {\n  ?dept a pv:Department .\n  FILTER NOT EXISTS {\n    ?m pv:memberOf ?dept .\n    ?m a pv:Manager .\n  }\n}\n"
     }
   }, {
     "id" : "34",
@@ -376,7 +376,7 @@
     "classes" : [ ":Supplier" ],
     "properties" : [ ":name", ":addressLocality", ":addressCountryCode", ":addressCountry" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?name ?locality ?ccode ?country \nWHERE {\n  ?sup a pv:Supplier ;\n    pv:name ?name .\n  OPTIONAL { ?sup pv:addressLocality ?locality . }\n  OPTIONAL { ?sup pv:addressCountryCode ?ccode . }\n  OPTIONAL { ?sup pv:addressCountry ?country . }\n}\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?name ?locality ?ccode ?country\nWHERE {\n  ?sup a pv:Supplier ;\n    pv:name ?name .\n  OPTIONAL { ?sup pv:addressLocality ?locality . }\n  OPTIONAL { ?sup pv:addressCountryCode ?ccode . }\n  OPTIONAL { ?sup pv:addressCountry ?country . }\n}\n"
     }
   }, {
     "id" : "35",
@@ -398,7 +398,7 @@
     "classes" : [ ":Hardware", ":ProductCategory" ],
     "properties" : [ ":name", ":hasCategory" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n        \nSELECT ?cat ?name\nWHERE {\n  ?hw a pv:Hardware ; \n    pv:hasCategory ?cat .\n  ?cat pv:name ?name .\n} \nGROUP BY ?cat ?name\nORDER BY DESC(COUNT(*))\nLIMIT 3\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?cat ?name\nWHERE {\n  ?hw a pv:Hardware ;\n    pv:hasCategory ?cat .\n  ?cat pv:name ?name .\n}\nGROUP BY ?cat ?name\nORDER BY DESC(COUNT(*))\nLIMIT 3\n"
     }
   }, {
     "id" : "37",
@@ -431,7 +431,7 @@
     "classes" : [ ":Hardware" ],
     "properties" : [ ":width_mm", ":height_mm", ":depth_mm" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?hw ?width ?height ?depth \nWHERE {\n  ?hw a pv:Hardware ;\n    pv:width_mm ?width ;\n    pv:height_mm ?height ;\n    pv:depth_mm ?depth .\n  FILTER (?width > ?height && ?depth < 50)\n}\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?hw ?width ?height ?depth\nWHERE {\n  ?hw a pv:Hardware ;\n    pv:width_mm ?width ;\n    pv:height_mm ?height ;\n    pv:depth_mm ?depth .\n  FILTER (?width > ?height && ?depth < 50)\n}\n"
     }
   }, {
     "id" : "40",
@@ -453,7 +453,7 @@
     "classes" : [ ":Manager", ":Agent", ":Department" ],
     "properties" : [ ":hasManager", ":name", ":memberOf" ],
     "query" : {
-      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?m ?name (?deptTeam / ?fullteam * 100 AS ?pct)\nWHERE {\n  \n  ?m pv:name ?name .\n  \n  { # full team\n    SELECT ?m (COUNT(*) AS ?fullteam) WHERE {\n      ?e pv:hasManager ?m .\n    } GROUP BY ?m\n  }\n        \n  { # team in same dept\n    SELECT ?m (COUNT(*) AS ?deptTeam) WHERE {\n      ?m pv:memberOf ?dept .\n      ?e pv:hasManager ?m .\n      ?e pv:memberOf ?dept .\n    } GROUP BY ?m\n  }\n}\n"
+      "sparql" : "PREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?m ?name (?deptTeam / ?fullteam * 100 AS ?pct)\nWHERE {\n\n  ?m pv:name ?name .\n\n  { # full team\n    SELECT ?m (COUNT(*) AS ?fullteam) WHERE {\n      ?e pv:hasManager ?m .\n    } GROUP BY ?m\n  }\n\n  { # team in same dept\n    SELECT ?m (COUNT(*) AS ?deptTeam) WHERE {\n      ?m pv:memberOf ?dept .\n      ?e pv:hasManager ?m .\n      ?e pv:memberOf ?dept .\n    } GROUP BY ?m\n  }\n}\n"
     }
   }, {
     "id" : "42",
@@ -464,7 +464,7 @@
     "classes" : [ ":BillOfMaterial", ":Hardware", ":BomPart", ":Price" ],
     "properties" : [ ":hasBomPart", ":quantity", ":hasPart", ":price", ":amount", ":currency" ],
     "query" : {
-      "sparql" : "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?bom (ROUND(AVG(?spst / ?sq) * 100) / 100 AS ?avgUnitCost)\nWHERE {\n  {\n    SELECT ?bom (SUM(?partSubTotal) AS ?spst) (SUM(xsd:int(?quant)) AS ?sq)\n    WHERE {\n      ?bom a pv:BillOfMaterial ;\n        pv:hasBomPart ?part . \n      ?part pv:quantity ?quant .\n      ?part pv:hasPart/pv:price/pv:amount ?amount .\n      ?part pv:hasPart/pv:price/pv:currency \"EUR\" .\n      BIND(xsd:int(?quant) * ?amount AS ?partSubTotal)\n    }\n    GROUP BY ?bom\n  }\n} \nGROUP BY ?bom\nORDER BY DESC(?avgUnitCost)\nLIMIT 1\n"
+      "sparql" : "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?bom (ROUND(AVG(?spst / ?sq) * 100) / 100 AS ?avgUnitCost)\nWHERE {\n  {\n    SELECT ?bom (SUM(?partSubTotal) AS ?spst) (SUM(xsd:int(?quant)) AS ?sq)\n    WHERE {\n      ?bom a pv:BillOfMaterial ;\n        pv:hasBomPart ?part .\n      ?part pv:quantity ?quant .\n      ?part pv:hasPart/pv:price/pv:amount ?amount .\n      ?part pv:hasPart/pv:price/pv:currency \"EUR\" .\n      BIND(xsd:int(?quant) * ?amount AS ?partSubTotal)\n    }\n    GROUP BY ?bom\n  }\n}\nGROUP BY ?bom\nORDER BY DESC(?avgUnitCost)\nLIMIT 1\n"
     }
   }, {
     "id" : "43",
@@ -486,7 +486,7 @@
     "classes" : [ ":Hardware" ],
     "properties" : [ ":compatibleProduct" ],
     "query" : {
-      "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?id ?name ?width\nWHERE {\n  { # get min-max range\n    SELECT (MIN(?width) AS ?minW) (MAX(?width) AS ?maxW)\n    WHERE {\n      ?hw a pv:Hardware ;\n        pv:width_mm ?width .\n    }\n  } \n  \n  # get 90. percentile\n  BIND(?minW + (0.9 * (?maxW - ?minW)) AS ?pct90)\n  \n  ?hw a pv:Hardware ;\n    pv:id ?id ;\n    pv:name ?name ;\n    pv:width_mm ?width .\n  \n  FILTER(?width >= ?pct90)\n}\nORDER BY DESC(?width)\n"
+      "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?id ?name ?width\nWHERE {\n  { # get min-max range\n    SELECT (MIN(?width) AS ?minW) (MAX(?width) AS ?maxW)\n    WHERE {\n      ?hw a pv:Hardware ;\n        pv:width_mm ?width .\n    }\n  }\n\n  # get 90. percentile\n  BIND(?minW + (0.9 * (?maxW - ?minW)) AS ?pct90)\n\n  ?hw a pv:Hardware ;\n    pv:id ?id ;\n    pv:name ?name ;\n    pv:width_mm ?width .\n\n  FILTER(?width >= ?pct90)\n}\nORDER BY DESC(?width)\n"
     }
   } ]
 } ]

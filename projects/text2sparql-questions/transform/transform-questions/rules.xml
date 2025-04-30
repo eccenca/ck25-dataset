@@ -2,7 +2,7 @@
   <MetaData>
     <Label>Transform questions.json</Label>
     <Description xml:space="preserve"><![CDATA[]]></Description>
-    <Modified>2025-04-24T17:27:49.644272173Z</Modified>
+    <Modified>2025-04-30T11:29:49.740732479Z</Modified>
     <Created>2025-01-27T14:40:11.780130467Z</Created>
     <CreatedByUser>http://eccenca.com/admin</CreatedByUser>
     <LastModifiedByUser>http://eccenca.com/admin</LastModifiedByUser>
@@ -197,6 +197,25 @@
               <StickyNotes> </StickyNotes>
             </UiAnnotations>
           </TransformRule>
+          <TransformRule name="Class">
+            <MetaData>
+              <Label></Label>
+              <Description xml:space="preserve"><![CDATA[]]></Description>
+              <Tags> </Tags>
+            </MetaData>
+            <TransformInput id="generateType" function="constantUri">
+              <Param name="value" xml:space="preserve"><![CDATA[<http://www.w3.org/2002/07/owl#Class>]]></Param>
+            </TransformInput>
+            <MappingTarget uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" isBackwardProperty="false" isAttribute="false">
+              <ValueType nodeType="UriValueType"/>
+            </MappingTarget>
+            <RuleLayout>
+              <NodePositions> </NodePositions>
+            </RuleLayout>
+            <UiAnnotations>
+              <StickyNotes> </StickyNotes>
+            </UiAnnotations>
+          </TransformRule>
         </MappingRules>
         <MappingTarget uri="https://text2sparql.aksw.org/2025/corporate/queries/relatedClass" isBackwardProperty="false" isAttribute="false">
           <ValueType nodeType="UriValueType"/>
@@ -240,6 +259,25 @@
               <StickyNotes> </StickyNotes>
             </UiAnnotations>
           </TransformRule>
+          <TransformRule name="Property">
+            <MetaData>
+              <Label></Label>
+              <Description xml:space="preserve"><![CDATA[]]></Description>
+              <Tags> </Tags>
+            </MetaData>
+            <TransformInput id="generateType" function="constantUri">
+              <Param name="value" xml:space="preserve"><![CDATA[<http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>]]></Param>
+            </TransformInput>
+            <MappingTarget uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" isBackwardProperty="false" isAttribute="false">
+              <ValueType nodeType="UriValueType"/>
+            </MappingTarget>
+            <RuleLayout>
+              <NodePositions> </NodePositions>
+            </RuleLayout>
+            <UiAnnotations>
+              <StickyNotes> </StickyNotes>
+            </UiAnnotations>
+          </TransformRule>
         </MappingRules>
         <MappingTarget uri="https://text2sparql.aksw.org/2025/corporate/queries/relatedProperty" isBackwardProperty="false" isAttribute="false">
           <ValueType nodeType="UriValueType"/>
@@ -274,6 +312,25 @@
                 <NodePos id="path1" x="-870" y="48"/>
                 <NodePos id="buildUri" x="-225" y="-17"/>
               </NodePositions>
+            </RuleLayout>
+            <UiAnnotations>
+              <StickyNotes> </StickyNotes>
+            </UiAnnotations>
+          </TransformRule>
+          <TransformRule name="Feature">
+            <MetaData>
+              <Label></Label>
+              <Description xml:space="preserve"><![CDATA[]]></Description>
+              <Tags> </Tags>
+            </MetaData>
+            <TransformInput id="generateType" function="constantUri">
+              <Param name="value" xml:space="preserve"><![CDATA[<https://text2sparql.aksw.org/2025/corporate/queries/Feature>]]></Param>
+            </TransformInput>
+            <MappingTarget uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" isBackwardProperty="false" isAttribute="false">
+              <ValueType nodeType="UriValueType"/>
+            </MappingTarget>
+            <RuleLayout>
+              <NodePositions> </NodePositions>
             </RuleLayout>
             <UiAnnotations>
               <StickyNotes> </StickyNotes>
