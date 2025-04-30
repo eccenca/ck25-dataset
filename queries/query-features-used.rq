@@ -10,7 +10,7 @@ WHERE
     SELECT DISTINCT 
       ?Feature 
       (COUNT(?query) AS ?Queries) 
-      (ROUND(?Queries / ?nrOfQry * 100) AS ?Percent) 
+      (ROUND(?Queries / ?nrOfQry * 100 * 10) / 10 AS ?Percent) 
     WHERE {
       {
         SELECT (0 + COUNT(?q) AS ?nrOfQry) WHERE {
