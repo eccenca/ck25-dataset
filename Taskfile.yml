@@ -24,8 +24,7 @@ tasks:
   table:generate:
     desc: Generate the paper table
     cmds:
-      - >
-        cmemc query execute ./queries/query-features-used.rq --accept text/csv
+      - cmemc query execute ./queries/query-features-used.rq --accept text/csv
 
   images:generate:
     desc: Generate the paper images
@@ -45,6 +44,12 @@ tasks:
         grep "en:" --color=always |
         grep -v "#" --color=always |
         less -r
+
+  questions:update:
+    desc: Update Corporate Memory with latest questions
+    cmds:
+      - cmemc dataset upload text2sparql-questions:questions-yml questions.yml
+      - cmemc workflow execute text2sparql-questions:import-questions --wait
 
   project:export:
     desc: Export the project
@@ -101,7 +106,7 @@ tasks:
         cmd: cmemc admin workspace python install {{.ITEM}}
       - for: {var: PROJECTS, split: " "}
         cmd: cmemc project import --replace {{.PROJECTS_DIR}}/{{.ITEM}}
-      - cmemc dataset upload text2sparql-questions:questions-yml questions.yml
+      - task: questions:update
 
   project:delete:
     desc: Delete the project
