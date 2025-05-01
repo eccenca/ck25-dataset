@@ -21,6 +21,15 @@ tasks:
     cmds:
       - task --list
 
+  questions:list:
+    desc: List all questions
+    cmds:
+      - >
+        cat questions.yml |
+        grep "en:" --color=always |
+        grep -v "#" --color=always |
+        less -r
+
   project:export:
     desc: Export the project
     cmds:
