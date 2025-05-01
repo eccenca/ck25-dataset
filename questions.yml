@@ -945,7 +945,7 @@ questions:
 
   - id: 37
     question:
-      en: For each Bill of Material, how many parts does it contain and what is the total material quantity — show me only those BOMs exceeding 600 total items and ordern them descending.
+      en: For each Bill of Material, how many parts does it contain and what is the total material quantity — show me only those BOMs exceeding 600 total items and order them descending.
     features:
       - SELECT
       - GROUP
@@ -1210,6 +1210,118 @@ questions:
           FILTER(?width >= ?pct90)
         }
         ORDER BY DESC(?width)
+
+  - id: 45
+    question:
+      en: Which supplier delivers the most reliable Inductor?
+    features:
+      - SELECT
+      - ORDER
+      - LIMIT
+    classes:
+      - :Hardware
+      - :Supplier
+      - :ProductCategory
+    properties:
+      - :hasCategory
+      - :reliabilityIndex
+      - :hasSupplier
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?hardware pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Inductor> .
+          ?hardware pv:reliabilityIndex ?reliabilityIndex .
+          ?hardware pv:hasSupplier ?result .
+        }
+        ORDER BY DESC(?reliabilityIndex)
+        LIMIT 1
+
+  - id: 46
+    question:
+      en: What are the top 5 suppliers with best average reliability over their products.
+    features:
+      - SELECT
+      - GROUP
+      - AVG
+      - ORDER
+      - LIMIT
+    classes:
+      - :Supplier
+      - :Product
+    properties:
+      - :reliabilityIndex
+      - :hasSupplier
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result (AVG(?reliabilityIndex) AS ?averageReliabilityIndex)
+        WHERE
+        {
+          ?hardware pv:reliabilityIndex ?reliabilityIndex .
+          ?hardware pv:hasSupplier ?result .
+        }
+        GROUP BY ?result
+        ORDER BY DESC(?averageReliabilityIndex)
+        LIMIT 5
+
+
+  - id: 47
+    question:
+      en: From which countries are the BOM parts of our SkySync MechWave delivered?
+    features:
+      - SELECT
+    classes:
+      - :BillOfMaterial
+      - :BomPart
+      - :Product
+      - :Supplier
+    properties:
+      - :hasBomPart
+      - :hasPart
+      - :hasSupplier
+      - :country
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/bom-17> pv:hasBomPart ?bomPart .
+          ?bomPart pv:hasPart ?product .
+          ?product pv:hasSupplier ?supplier .
+          ?supplier pv:country ?result
+        }
+
+  - id: 48
+    question:
+      en: Show me all BOMs which have at least on part from a polish supplier.
+    features:
+      - SELECT
+    classes:
+      - :BillOfMaterial
+      - :BomPart
+      - :Product
+      - :Supplier
+    properties:
+      - :hasBomPart
+      - :hasPart
+      - :hasSupplier
+      - :country
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result a pv:BillOfMaterial .
+          ?result pv:hasBomPart ?bomPart .
+          ?bomPart pv:hasPart ?product .
+          ?product pv:hasSupplier ?supplier .
+          ?supplier pv:country <http://dbpedia.org/resource/Poland> .
+        }
 
   # - id: xx
   #   question:
