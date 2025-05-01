@@ -2,7 +2,7 @@
 ---
 dataset:
   id: https://text2sparql.aksw.org/2025/corporate/
-  prefix: cd25
+  prefix: ck25
   defaultNamespace: http://ld.company.org/prod-vocab/
 questions:
 
