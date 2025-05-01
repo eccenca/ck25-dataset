@@ -1,5 +1,5 @@
 @prefix agg: <http://jena.apache.org/ARQ/function/aggregate#> .
-@prefix : <https://ns.eccenca.com/example/data/vocabs/> .
+@prefix : <https://vocab.eccenca.com/shacl/> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix constant: <http://qudt.org/vocab/constant/> .
 @prefix ecc: <https://ns.eccenca.com/> .
@@ -62,7 +62,6 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix datatype: <http://qudt.org/vocab/datatype/> .
 @prefix WidgetIntegration: <https://vocab.eccenca.com/shui/WidgetIntegration_> .
-@prefix shapes: <https://vocab.eccenca.com/shacl/> .
 @prefix gnd: <https://d-nb.info/standards/elementset/gnd#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix map: <http://www.w3.org/2005/xpath-functions/map> .
@@ -88,6 +87,8 @@
 @prefix QueryPlaceholder: <https://vocab.eccenca.com/shui/QueryPlaceholder_> .
 @prefix omgeo: <http://www.ontotext.com/owlim/geo#> .
 
+ns2:creator a owl:AnnotationProperty .
+
 ns2:modified a owl:AnnotationProperty .
 
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
@@ -97,8 +98,6 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 ns2:issued a owl:AnnotationProperty .
 
 ns2:rights a owl:AnnotationProperty .
-
-ns2:creator a owl:AnnotationProperty .
 
 creativecommons:license a owl:AnnotationProperty .
 
@@ -114,7 +113,11 @@ pv:hasBomPart a owl:ObjectProperty .
 
 prodi:bom-1 a pv:BillOfMaterial .
 
+pv:BillOfMaterial a owl:Class .
+
 prodi:bom-part-1-C247-3833661 a pv:BomPart .
+
+pv:BomPart a owl:Class .
 
 prodi:bom-part-1-E355-4376121 a pv:BomPart .
 
@@ -131,8 +134,6 @@ prodi:bom-part-1-R902-1645052 a pv:BomPart .
 prodi:bom-part-1-S649-2935217 a pv:BomPart .
 
 pv:name a owl:DatatypeProperty .
-
-pv:BillOfMaterial a owl:Class .
 
 prodi:bom-10 a pv:BillOfMaterial .
 
@@ -554,9 +555,9 @@ pv:hasPart a owl:ObjectProperty .
 
 prodi:hw-C247-3833661 a pv:Hardware .
 
-pv:quantity a owl:DatatypeProperty .
+pv:Hardware a owl:Class .
 
-pv:BomPart a owl:Class .
+pv:quantity a owl:DatatypeProperty .
 
 prodi:hw-E355-4376121 a pv:Hardware .
 
@@ -932,6 +933,8 @@ pv:id a owl:DatatypeProperty .
 
 prodi:dept-22183 a pv:Department .
 
+pv:Department a owl:Class .
+
 pv:responsibleFor a owl:ObjectProperty .
 
 prodi:hw-A688-6056899 a pv:Hardware .
@@ -954,8 +957,6 @@ prodi:hw-U836-7709298 a pv:Hardware .
 
 prodi:hw-W501-5990901 a pv:Hardware .
 
-pv:Department a owl:Class .
-
 prodi:dept-41622 a pv:Department .
 
 prodi:hw-A145-1240844 a pv:Hardware .
@@ -977,6 +978,8 @@ prodi:hw-Q986-9996088 a pv:Hardware .
 prodi:hw-X375-4984404 a pv:Hardware .
 
 prodi:srv-Y274-1029755 a pv:Service .
+
+pv:Service a owl:Class .
 
 prodi:dept-66469 a pv:Department .
 
@@ -1052,9 +1055,13 @@ pv:addressText a owl:DatatypeProperty .
 
 prodi:empl-Adolfina.Hoch%40company.org a pv:Employee .
 
+pv:Employee a owl:Class .
+
 pv:areaOfExpertise a owl:ObjectProperty .
 
 prodi:prod-cat-Breaker a pv:ProductCategory .
+
+pv:ProductCategory a owl:Class .
 
 prodi:prod-cat-Coil a pv:ProductCategory .
 
@@ -1070,11 +1077,11 @@ pv:hasManager a owl:ObjectProperty .
 
 prodi:empl-Franz.Kornhaeusel%40company.org a pv:Manager .
 
+pv:Manager a owl:Class .
+
 pv:memberOf a owl:ObjectProperty .
 
 pv:phone a owl:DatatypeProperty .
-
-pv:Employee a owl:Class .
 
 prodi:empl-Anamchara.Foerstner%40company.org a pv:Employee .
 
@@ -1131,8 +1138,6 @@ prodi:empl-Thomas.Mueller%40company.org a pv:Manager .
 prodi:empl-Dieterich.Blau%40company.org a pv:Employee .
 
 prodi:prod-cat-Resistor a pv:ProductCategory .
-
-pv:Manager a owl:Class .
 
 prodi:empl-Elisabeth.Harman%40company.org a pv:Employee .
 
@@ -1242,17 +1247,19 @@ pv:hasSupplier a owl:ObjectProperty .
 
 prodi:suppl-42a20063-bd30-49d3-8506-ceac4ceb2d9e a pv:Supplier .
 
+pv:Supplier a owl:Class .
+
 pv:height_mm a owl:DatatypeProperty .
 
 pv:price a owl:ObjectProperty .
 
 prodi:price-hw-A145-1240844-EUR a pv:Price .
 
+pv:Price a owl:Class .
+
 pv:weight_g a owl:DatatypeProperty .
 
 pv:width_mm a owl:DatatypeProperty .
-
-pv:Hardware a owl:Class .
 
 prodi:hw-A166-3766336 a pv:Hardware .
 
@@ -5308,8 +5315,6 @@ pv:currency a owl:DatatypeProperty;
   rdfs:domain pv:Price;
   rdfs:range xsd:string .
 
-pv:Price a owl:Class .
-
 prodi:price-srv-D215-3449390-EUR a pv:Price .
 
 prodi:price-srv-I241-8776317-EUR a pv:Price .
@@ -5328,20 +5333,19 @@ prodi:price-srv-Y274-1029755-EUR a pv:Price .
 
 prodi:price-srv-Y704-9764759-EUR a pv:Price .
 
-pv:ProductCategory a owl:Class .
-
 pv:eligibleFor a owl:ObjectProperty;
   rdfs:domain pv:Service;
   rdfs:range pv:Product .
 
-pv:Service a owl:Class;
-  rdfs:subClassOf pv:Product .
+pv:Product a owl:Class .
 
 prodi:srv-Y704-9764759 a pv:Service .
 
 pv:addressCountry a owl:DatatypeProperty;
   rdfs:domain pv:Agent;
   rdfs:range xsd:string .
+
+pv:Agent a owl:Class .
 
 pv:addressCountryCode a owl:DatatypeProperty;
   rdfs:domain pv:Agent;
@@ -5355,7 +5359,7 @@ pv:country a owl:ObjectProperty;
   rdfs:domain pv:Supplier;
   rdfs:range dbo:Country .
 
-pv:Supplier a owl:Class .
+dbo:Country a owl:Class .
 
 prodi:suppl-34056316-50e7-46e4-bfef-fa579fe2c5c8 a pv:Supplier;
   wgs:lat "64.6863136" .
@@ -5369,25 +5373,21 @@ prodi:suppl-49554e41-9e26-4a38-9f96-871eda1dc50a a pv:Supplier;
 prodi:suppl-5011ad6d-cebe-4f4b-bc58-2147ea820d49 a pv:Supplier;
   wgs:lat "48.5916164" .
 
-dbo:Country a owl:Class .
-
 <http://ld.company.org/prod-vocab/> a owl:Ontology .
 
 ecc:rpietzsch a foaf:Person, ns2:Agent .
-
-pv:Agent a owl:Class .
-
-pv:Product a owl:Class .
 
 pv:hasDirectReport a owl:ObjectProperty;
   rdfs:domain pv:Manager;
   rdfs:range pv:Employee .
 
+pv:Hardware rdfs:subClassOf pv:Product .
+
+pv:Service rdfs:subClassOf pv:Product .
+
 pv:Employee rdfs:subClassOf pv:Agent .
 
 pv:Manager rdfs:subClassOf pv:Employee .
-
-pv:Hardware rdfs:subClassOf pv:Product .
 
 pv:hasBomPart rdfs:domain pv:BillOfMaterial;
   rdfs:range pv:BomPart .
@@ -6335,35 +6335,47 @@ prodi:suppl-5011ad6d-cebe-4f4b-bc58-2147ea820d49 wgs:long "6.4919563" .
 pv:hasBomPart rdfs:comment "A part(s) used in this BOM."@en;
   rdfs:label "has BOM Part"@en .
 
-pv:name rdfs:comment "The name of something."@en;
-  rdfs:label "name"@en .
-
 pv:BillOfMaterial rdfs:comment "The Bill of Material (BOM) of a complex product."@en;
   rdfs:label "Bill of Material (BOM)"@en .
-
-pv:hasPart rdfs:comment "The Product needed."@en;
-  rdfs:label "part"@en .
-
-pv:quantity rdfs:comment "The quantity needed."@en;
-  rdfs:label "quantity"@en .
 
 pv:BomPart rdfs:comment "A (number of) part(s) in a BOM."@en;
   rdfs:label "BOM Part"@en .
 
+pv:name rdfs:comment "The name of something."@en;
+  rdfs:label "name"@en .
+
+pv:hasPart rdfs:comment "The Product needed."@en;
+  rdfs:label "part"@en .
+
+pv:Hardware rdfs:comment "The hardware products produced."@en;
+  rdfs:label "Hardware"@en .
+
+pv:quantity rdfs:comment "The quantity needed."@en;
+  rdfs:label "quantity"@en .
+
 pv:id rdfs:comment "The ID of a thing."@en;
   rdfs:label "ID"@en .
-
-pv:responsibleFor rdfs:comment "The product for which a department is responsible."@en;
-  rdfs:label "responsible for"@en .
 
 pv:Department rdfs:comment "A department in an organization."@en;
   rdfs:label "Department"@en .
 
+pv:responsibleFor rdfs:comment "The product for which a department is responsible."@en;
+  rdfs:label "responsible for"@en .
+
+pv:Service rdfs:comment "Some value added service realized based on other product(s)."@en;
+  rdfs:label "Service"@en .
+
 pv:addressText rdfs:comment "The address text."@en;
   rdfs:label "address text"@en .
 
+pv:Employee rdfs:comment "An employee in my company."@en;
+  rdfs:label "Employee"@en .
+
 pv:areaOfExpertise rdfs:comment "The product category agent is expert for."@en;
   rdfs:label "area of expertise"@en .
+
+pv:ProductCategory rdfs:comment "The category of a product."@en;
+  rdfs:label "Product Category"@en .
 
 pv:email rdfs:comment "The e-mail of an agent."@en;
   rdfs:label "email"@en .
@@ -6371,17 +6383,14 @@ pv:email rdfs:comment "The e-mail of an agent."@en;
 pv:hasManager rdfs:comment "The manager of the employee."@en;
   rdfs:label "has manager"@en .
 
+pv:Manager rdfs:comment "An employee with some direct reports and management duties."@en;
+  rdfs:label "Manager"@en .
+
 pv:memberOf rdfs:comment "The department to which an agents belongs."@en;
   rdfs:label "member of"@en .
 
 pv:phone rdfs:comment "A phone number."@en;
   rdfs:label "phone number"@en .
-
-pv:Employee rdfs:comment "An employee in my company."@en;
-  rdfs:label "Employee"@en .
-
-pv:Manager rdfs:comment "An employee with some direct reports and management duties."@en;
-  rdfs:label "Manager"@en .
 
 pv:compatibleProduct rdfs:comment "A compatible product."@en;
   rdfs:label "compatible product"@en .
@@ -6398,20 +6407,23 @@ pv:hasProductManager rdfs:comment "The employee acting as the product manager of
 pv:hasSupplier rdfs:comment "The supplier of a product."@en;
   rdfs:label "supplier"@en .
 
+pv:Supplier rdfs:comment "The Supplier of some item(s)."@en;
+  rdfs:label "Supplier"@en .
+
 pv:height_mm rdfs:comment "The height of an item measured in millimeter."@en;
   rdfs:label "height (mm)"@en .
 
 pv:price rdfs:comment "The price specification of a product."@en;
   rdfs:label "price"@en .
 
+pv:Price rdfs:comment "A price object to deal with multiple prices and/or currencies."@en;
+  rdfs:label "Price"@en .
+
 pv:weight_g rdfs:comment "The weight of an item measured in grams."@en;
   rdfs:label "weight (g)"@en .
 
 pv:width_mm rdfs:comment "The width of an item measured in millimeter."@en;
   rdfs:label "width (mm)"@en .
-
-pv:Hardware rdfs:comment "The hardware products produced."@en;
-  rdfs:label "Hardware"@en .
 
 pv:reliabilityIndex rdfs:comment "A computed KPI to have an reliablity indicator in the context of a supply chain."@en;
   rdfs:label "has reliability index"@en .
@@ -6420,15 +6432,13 @@ pv:amount rdfs:comment "The amount."@en .
 
 pv:currency rdfs:comment "The currency."@en .
 
-pv:Price rdfs:comment "A price object to deal with multiple prices and/or currencies."@en .
-
-pv:ProductCategory rdfs:comment "The category of a product."@en .
-
 pv:eligibleFor rdfs:comment "Valid product service combinations (bundles, accessories)."@en .
 
-pv:Service rdfs:comment "Some value added service realized based on other product(s)."@en .
+pv:Product rdfs:comment "Anything that we make and/or sell."@en .
 
 pv:addressCountry rdfs:comment "The address country."@en .
+
+pv:Agent rdfs:comment "Abstract base class for people, robots or other things that can act."@en .
 
 pv:addressCountryCode rdfs:comment "The address country code."@en .
 
@@ -6436,13 +6446,7 @@ pv:addressLocality rdfs:comment "The address locality (city)."@en .
 
 pv:country rdfs:comment "The country where the supplier is located."@en .
 
-pv:Supplier rdfs:comment "The Supplier of some item(s)."@en .
-
 <http://ld.company.org/prod-vocab/> rdfs:comment "Example vocabulary modeled from a simple sentence about products and services."@en .
-
-pv:Agent rdfs:comment "Abstract base class for people, robots or other things that can act."@en .
-
-pv:Product rdfs:comment "Anything that we make and/or sell."@en .
 
 pv:hasDirectReport rdfs:comment "The employees manager she is reporting to."@en .
 
@@ -11565,16 +11569,12 @@ prodi:price-hw-Z980-8040792-EUR rdfs:label "5,54 EUR" .
 prodi:price-hw-Z994-6661823-EUR rdfs:label "0,38 EUR" .
 
 pv:amount rdfs:label "amount"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
+  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
 
 pv:currency rdfs:label "currency"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:Price rdfs:label "Price"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/solar/tag-price-bold.svg?color=%23D6AF00&format=svg> .
+  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
 
 prodi:price-srv-D215-3449390-EUR rdfs:label "1709,54 EUR" .
 
@@ -11594,39 +11594,38 @@ prodi:price-srv-Y274-1029755-EUR rdfs:label "1008,28 EUR" .
 
 prodi:price-srv-Y704-9764759-EUR rdfs:label "748,40 EUR" .
 
-pv:ProductCategory rdfs:label "Product Category"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/material-symbols-light/category-outline.svg?color=%23D6AF00&format=svg> .
-
 pv:eligibleFor rdfs:label "eligible for"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
+  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
 
-pv:Service rdfs:label "Service"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/mdi/account-service-outline.svg?color=%23D6AF00&format=svg> .
+pv:Product rdfs:label "Product"@en;
+  foaf:depiction <https://api.iconify.design/ant-design/product-outlined.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
 
 prodi:srv-Y704-9764759 rdfs:label "Y704-9764759 - Product Analysis" .
 
 pv:addressCountry rdfs:label "address country"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
+  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:Agent rdfs:label "Agent"@en;
+  foaf:depiction <https://api.iconify.design/mdi/anonymous.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
 
 pv:addressCountryCode rdfs:label "address country code"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
+  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
 
 pv:addressLocality rdfs:label "address locality"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
+  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
 
 pv:country rdfs:label "country"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
+  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
 
-pv:Supplier rdfs:label "Supplier"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/mdi/company.svg?color=%23D6AF00&format=svg> .
+dbo:Country rdfs:label "Country"@en;
+  foaf:depiction <https://api.iconify.design/gis/search-country.svg?color=%23D6AF00&format=svg> .
 
 prodi:suppl-34056316-50e7-46e4-bfef-fa579fe2c5c8 rdfs:label "Villegas-Cummings (Russian Federation)" .
 
@@ -11636,35 +11635,122 @@ prodi:suppl-49554e41-9e26-4a38-9f96-871eda1dc50a rdfs:label "Castillo Inc (Iran,
 
 prodi:suppl-5011ad6d-cebe-4f4b-bc58-2147ea820d49 rdfs:label "Williams-Sweeney (France)" .
 
-dbo:Country rdfs:label "Country"@en;
-  foaf:depiction <https://api.iconify.design/gis/search-country.svg?color=%23D6AF00&format=svg> .
-
 <http://ld.company.org/prod-vocab/> rdfs:label "pv: Products - Vocab"@en;
+  ns2:creator ecc:rpietzsch;
+  ns2:contributor ecc:stramp;
+  ns2:created "2018-08-29"^^xsd:date;
+  owl:versionInfo "v0.0.1-37-g15bd45c-dirty";
   ns2:modified "2018-08-29"^^xsd:date;
   vann:preferredNamespacePrefix "pv";
   vann:preferredNamespaceUri "http://ld.company.org/prod-vocab/";
-  owl:versionInfo "v0.0.1-37-g15bd45c-dirty";
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
   void:vocabulary <http://purl.org/vocab/vann/>, <http://xmlns.com/foaf/0.1/>;
-  ns2:contributor ecc:stramp;
-  ns2:creator ecc:rpietzsch;
-  ns2:created "2018-08-29"^^xsd:date;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
   creativecommons:license <http://creativecommons.org/licenses/by/4.0/>;
   ns2:publisher ecc:eccenca-GmbH .
 
 ecc:rpietzsch rdfs:label "René Pietzsch" .
 
-pv:Agent rdfs:label "Agent"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/mdi/anonymous.svg?color=%23D6AF00&format=svg> .
-
-pv:Product rdfs:label "Product"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/ant-design/product-outlined.svg?color=%23D6AF00&format=svg> .
-
 pv:hasDirectReport rdfs:label "has direct report"@en;
-  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
+  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:hasBomPart foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:BillOfMaterial foaf:depiction <https://api.iconify.design/icon-park-outline/tree-list.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:BomPart foaf:depiction <https://api.iconify.design/fluent/puzzle-cube-piece-20-filled.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:name foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:hasPart foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:Hardware foaf:depiction <https://api.iconify.design/ion/hardware-chip-outline.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:quantity foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:id foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:Department foaf:depiction <https://api.iconify.design/arcticons/emoji-department-store.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:responsibleFor foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:Service foaf:depiction <https://api.iconify.design/mdi/account-service-outline.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:addressText foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:Employee foaf:depiction <https://api.iconify.design/clarity/employee-line.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:areaOfExpertise foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:ProductCategory foaf:depiction <https://api.iconify.design/material-symbols-light/category-outline.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:email foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:hasManager foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:Manager foaf:depiction <https://api.iconify.design/hugeicons/manager.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:memberOf foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:phone foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:compatibleProduct foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:depth_mm foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:hasCategory foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:hasProductManager foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:hasSupplier foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:Supplier foaf:depiction <https://api.iconify.design/mdi/company.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:height_mm foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:price foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:Price foaf:depiction <https://api.iconify.design/solar/tag-price-bold.svg?color=%23D6AF00&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:weight_g foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:width_mm foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+pv:reliabilityIndex foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg>;
+  rdfs:isDefinedBy <http://ld.company.org/prod-vocab/> .
+
+ns2:creator rdfs:isDefinedBy <http://purl.org/dc/terms/> .
 
 ns2:modified rdfs:isDefinedBy <http://purl.org/dc/terms/> .
 
@@ -11676,95 +11762,9 @@ ns2:issued rdfs:isDefinedBy <http://purl.org/dc/terms/> .
 
 ns2:rights rdfs:isDefinedBy <http://purl.org/dc/terms/> .
 
-ns2:creator rdfs:isDefinedBy <http://purl.org/dc/terms/> .
-
 creativecommons:license rdfs:isDefinedBy <http://creativecommons.org/ns> .
 
 ns2:publisher rdfs:isDefinedBy <http://purl.org/dc/terms/> .
-
-pv:hasBomPart rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:name rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:BillOfMaterial rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/icon-park-outline/tree-list.svg?color=%23D6AF00&format=svg> .
-
-pv:hasPart rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:quantity rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:BomPart rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/fluent/puzzle-cube-piece-20-filled.svg?color=%23D6AF00&format=svg> .
-
-pv:id rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:responsibleFor rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:Department rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/arcticons/emoji-department-store.svg?color=%23D6AF00&format=svg> .
-
-pv:addressText rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:areaOfExpertise rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:email rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:hasManager rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:memberOf rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:phone rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:Employee rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/clarity/employee-line.svg?color=%23D6AF00&format=svg> .
-
-pv:Manager rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/hugeicons/manager.svg?color=%23D6AF00&format=svg> .
-
-pv:compatibleProduct rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:depth_mm rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:hasCategory rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:hasProductManager rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:hasSupplier rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:height_mm rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:price rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%230085C6&format=svg> .
-
-pv:weight_g rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:width_mm rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
-
-pv:Hardware rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/ion/hardware-chip-outline.svg?color=%23D6AF00&format=svg> .
-
-pv:reliabilityIndex rdfs:isDefinedBy <http://ld.company.org/prod-vocab/>;
-  foaf:depiction <https://api.iconify.design/carbon:property-relationship.svg?color=%2339AB4B&format=svg> .
 
 ecc:eccenca-GmbH foaf:name "eccenca GmbH" .
 
@@ -15150,7 +15150,7 @@ prodi:bom-part-9-F383-6450755 pv:hasPart prodi:hw-F383-6450755;
   pv:quantity "7" .
 
 prodi:bom-part-9-H197-3970480 pv:hasPart prodi:hw-H197-3970480;
-  pv:quantity "78", "41" .
+  pv:quantity "41", "78" .
 
 prodi:bom-part-9-H631-9376983 pv:hasPart prodi:hw-H631-9376983;
   pv:quantity "99" .

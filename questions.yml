@@ -1181,10 +1181,17 @@ questions:
     features:
       - SELECT
       - FILTER
+      - SUBSELECT
+      - BIND
+      - MIN
+      - MAX
     classes:
       - :Hardware
     properties:
       - :compatibleProduct
+      - :width_mm
+      - :id
+      - :name
     query:
       sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
@@ -1323,16 +1330,51 @@ questions:
           ?supplier pv:country <http://dbpedia.org/resource/Poland> .
         }
 
-  # - id: xx
-  #   question:
-  #     en: ...
-  #   features:
-  #     - ...
-  #   classes:
-  #     - ...
-  #   properties:
-  #     - ...
-  #   query:
-  #     sparql: |
-  #       ...
+  - id: 49
+    question:
+      en: How many suppliers can deliver alternative compatible products for the K367 Strain Encoder?
+    features:
+      - SELECT
+      - COUNT
+    classes:
+      - :Product
+      - :Supplier
+    properties:
+      - :compatibleProduct
+      - :hasSupplier
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT (COUNT(?supplier) AS ?result)
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/hw-K367-1320550> pv:compatibleProduct ?alternative .
+          ?alternative pv:hasSupplier ?supplier .
+        }
+
+  - id: 50
+    question:
+      en: Which department is resposible for the most product and how many product are this?
+    features:
+      - SELECT
+      - GROUP
+      - COUNT
+      - ORDER
+      - LIMIT
+    classes:
+      - :Department
+      - :Product
+    properties:
+      - :responsibleFor
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result (COUNT(?result) AS ?count)
+        WHERE
+        {
+          ?result pv:responsibleFor ?product .
+        }
+        GROUP BY ?result
+        ORDER BY DESC(?count)
+        LIMIT 1
 

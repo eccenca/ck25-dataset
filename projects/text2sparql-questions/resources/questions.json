@@ -306,7 +306,7 @@
     "question" : {
       "en" : "Do we have any service that does apply to a BOM where parts are sourced from Russia?"
     },
-    "features" : [ "ASK", "FILTER", "SUB SELECT" ],
+    "features" : [ "ASK", "FILTER", "SUBSELECT" ],
     "classes" : [ ":Service", ":BillOfMaterial", ":BomPart", ":Supplier", ":Hardware" ],
     "properties" : [ ":hasBomPart", ":hasPart", ":hasSupplier", ":addressCountry", ":eligibleFor" ],
     "query" : {
@@ -384,7 +384,7 @@
       "en" : "For every product, list what other products it is compatible with and the price differences between both."
     },
     "features" : [ "SELECT" ],
-    "classes" : [ ":Product", ":Price", "owl:Class" ],
+    "classes" : [ ":Product", ":Price" ],
     "properties" : [ ":compatibleProduct", ":amount", ":price", ":currency", "rdfs:subClassOf" ],
     "query" : {
       "sparql" : "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX prodi: <http://ld.company.org/prod-instances/>\nPREFIX pv:    <http://ld.company.org/prod-vocab/>\n\nSELECT ?prod ?compatible (?prodAmount - ?compatibleAmount AS ?priceDiff)\nWHERE {\n  ?prodClass rdfs:subClassOf* pv:Product .\n  ?prod a ?prodClass ;\n    pv:compatibleProduct ?compatible .\n  ?prod pv:price/pv:amount ?prodAmount ;\n    pv:price/pv:currency \"EUR\" .\n  ?compatible pv:price/pv:amount ?compatibleAmount ;\n    pv:price/pv:currency \"EUR\" .\n}\n"
@@ -403,7 +403,7 @@
   }, {
     "id" : "37",
     "question" : {
-      "en" : "For each Bill of Material, how many parts does it contain and what is the total material quantity — show me only those BOMs exceeding 600 total items and ordern them descending."
+      "en" : "For each Bill of Material, how many parts does it contain and what is the total material quantity — show me only those BOMs exceeding 600 total items and order them descending."
     },
     "features" : [ "SELECT", "GROUP", "ORDER", "COUNT", "SUM", "HAVING", "BIND" ],
     "classes" : [ ":BillOfMaterial", ":BomPart" ],
@@ -449,7 +449,7 @@
     "question" : {
       "en" : "For each manager, what percentage of their entire team work in the same department as the manager?"
     },
-    "features" : [ "SELECT", "SUB SELECT", "GROUP", "COUNT" ],
+    "features" : [ "SELECT", "SUBSELECT", "GROUP", "COUNT" ],
     "classes" : [ ":Manager", ":Agent", ":Department" ],
     "properties" : [ ":hasManager", ":name", ":memberOf" ],
     "query" : {
@@ -460,7 +460,7 @@
     "question" : {
       "en" : "Which Bill-of-Material has the highest average unit cost of its hardware parts, and what is that average?"
     },
-    "features" : [ "SELECT", "SUB SELECT", "GROUP", "AVG", "SUM", "ROUND", "ORDER", "BIND", "LIMIT" ],
+    "features" : [ "SELECT", "SUBSELECT", "GROUP", "AVG", "SUM", "ROUND", "ORDER", "BIND", "LIMIT" ],
     "classes" : [ ":BillOfMaterial", ":Hardware", ":BomPart", ":Price" ],
     "properties" : [ ":hasBomPart", ":quantity", ":hasPart", ":price", ":amount", ":currency" ],
     "query" : {
@@ -482,11 +482,77 @@
     "question" : {
       "en" : "Which hardware items have dimensions in the top 10 % of all widths, and what are their IDs, names and widths?"
     },
-    "features" : [ "SELECT", "FILTER" ],
+    "features" : [ "SELECT", "FILTER", "SUBSELECT", "BIND", "MIN", "MAX" ],
     "classes" : [ ":Hardware" ],
-    "properties" : [ ":compatibleProduct" ],
+    "properties" : [ ":compatibleProduct", ":width_mm", ":id", ":name" ],
     "query" : {
       "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\n\nSELECT ?id ?name ?width\nWHERE {\n  { # get min-max range\n    SELECT (MIN(?width) AS ?minW) (MAX(?width) AS ?maxW)\n    WHERE {\n      ?hw a pv:Hardware ;\n        pv:width_mm ?width .\n    }\n  }\n\n  # get 90. percentile\n  BIND(?minW + (0.9 * (?maxW - ?minW)) AS ?pct90)\n\n  ?hw a pv:Hardware ;\n    pv:id ?id ;\n    pv:name ?name ;\n    pv:width_mm ?width .\n\n  FILTER(?width >= ?pct90)\n}\nORDER BY DESC(?width)\n"
+    }
+  }, {
+    "id" : "45",
+    "question" : {
+      "en" : "Which supplier delivers the most reliable Inductor?"
+    },
+    "features" : [ "SELECT", "ORDER", "LIMIT" ],
+    "classes" : [ ":Hardware", ":Supplier", ":ProductCategory" ],
+    "properties" : [ ":hasCategory", ":reliabilityIndex", ":hasSupplier" ],
+    "query" : {
+      "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?hardware pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Inductor> .\n  ?hardware pv:reliabilityIndex ?reliabilityIndex .\n  ?hardware pv:hasSupplier ?result .\n}\nORDER BY DESC(?reliabilityIndex)\nLIMIT 1\n"
+    }
+  }, {
+    "id" : "46",
+    "question" : {
+      "en" : "What are the top 5 suppliers with best average reliability over their products."
+    },
+    "features" : [ "SELECT", "GROUP", "AVG", "ORDER", "LIMIT" ],
+    "classes" : [ ":Supplier", ":Product" ],
+    "properties" : [ ":reliabilityIndex", ":hasSupplier" ],
+    "query" : {
+      "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result (AVG(?reliabilityIndex) AS ?averageReliabilityIndex)\nWHERE\n{\n  ?hardware pv:reliabilityIndex ?reliabilityIndex .\n  ?hardware pv:hasSupplier ?result .\n}\nGROUP BY ?result\nORDER BY DESC(?averageReliabilityIndex)\nLIMIT 5\n"
+    }
+  }, {
+    "id" : "47",
+    "question" : {
+      "en" : "From which countries are the BOM parts of our SkySync MechWave delivered?"
+    },
+    "features" : [ "SELECT" ],
+    "classes" : [ ":BillOfMaterial", ":BomPart", ":Product", ":Supplier" ],
+    "properties" : [ ":hasBomPart", ":hasPart", ":hasSupplier", ":country" ],
+    "query" : {
+      "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  <http://ld.company.org/prod-instances/bom-17> pv:hasBomPart ?bomPart .\n  ?bomPart pv:hasPart ?product .\n  ?product pv:hasSupplier ?supplier .\n  ?supplier pv:country ?result\n}\n"
+    }
+  }, {
+    "id" : "48",
+    "question" : {
+      "en" : "Show me all BOMs which have at least on part from a polish supplier."
+    },
+    "features" : [ "SELECT" ],
+    "classes" : [ ":BillOfMaterial", ":BomPart", ":Product", ":Supplier" ],
+    "properties" : [ ":hasBomPart", ":hasPart", ":hasSupplier", ":country" ],
+    "query" : {
+      "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result\nWHERE\n{\n  ?result a pv:BillOfMaterial .\n  ?result pv:hasBomPart ?bomPart .\n  ?bomPart pv:hasPart ?product .\n  ?product pv:hasSupplier ?supplier .\n  ?supplier pv:country <http://dbpedia.org/resource/Poland> .\n}\n"
+    }
+  }, {
+    "id" : "49",
+    "question" : {
+      "en" : "How many suppliers can deliver alternative compatible products for the K367 Strain Encoder?"
+    },
+    "features" : [ "SELECT", "COUNT" ],
+    "classes" : [ ":Product", ":Supplier" ],
+    "properties" : [ ":compatibleProduct", ":hasSupplier" ],
+    "query" : {
+      "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT (COUNT(?supplier) AS ?result)\nWHERE\n{\n  <http://ld.company.org/prod-instances/hw-K367-1320550> pv:compatibleProduct ?alternative .\n  ?alternative pv:hasSupplier ?supplier .\n}\n"
+    }
+  }, {
+    "id" : "50",
+    "question" : {
+      "en" : "Which department is resposible for the most product and how many product are this?"
+    },
+    "features" : [ "SELECT", "GROUP", "COUNT", "ORDER", "LIMIT" ],
+    "classes" : [ ":Department", ":Product" ],
+    "properties" : [ ":responsibleFor" ],
+    "query" : {
+      "sparql" : "PREFIX pv: <http://ld.company.org/prod-vocab/>\nSELECT DISTINCT ?result (COUNT(?result) AS ?count)\nWHERE\n{\n  ?result pv:responsibleFor ?product .\n}\nGROUP BY ?result\nORDER BY DESC(?count)\nLIMIT 1\n"
     }
   } ]
 } ]

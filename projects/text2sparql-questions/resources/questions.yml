@@ -663,7 +663,7 @@ questions:
     features:
       - ASK
       - FILTER
-      - SUB SELECT
+      - SUBSELECT
     classes:
       - :Service
       - :BillOfMaterial
@@ -889,7 +889,7 @@ questions:
     classes:
       - :Product
       - :Price
-      - owl:Class
+      # - owl:Class
     properties:
       - :compatibleProduct
       - :amount
@@ -945,7 +945,7 @@ questions:
 
   - id: 37
     question:
-      en: For each Bill of Material, how many parts does it contain and what is the total material quantity — show me only those BOMs exceeding 600 total items and ordern them descending.
+      en: For each Bill of Material, how many parts does it contain and what is the total material quantity — show me only those BOMs exceeding 600 total items and order them descending.
     features:
       - SELECT
       - GROUP
@@ -1069,7 +1069,7 @@ questions:
       en: For each manager, what percentage of their entire team work in the same department as the manager?
     features:
       - SELECT
-      - SUB SELECT
+      - SUBSELECT
       - GROUP
       - COUNT
     classes:
@@ -1110,7 +1110,7 @@ questions:
       en: Which Bill-of-Material has the highest average unit cost of its hardware parts, and what is that average?
     features:
       - SELECT
-      - SUB SELECT
+      - SUBSELECT
       - GROUP
       - AVG
       - SUM
@@ -1181,10 +1181,17 @@ questions:
     features:
       - SELECT
       - FILTER
+      - SUBSELECT
+      - BIND
+      - MIN
+      - MAX
     classes:
       - :Hardware
     properties:
       - :compatibleProduct
+      - :width_mm
+      - :id
+      - :name
     query:
       sparql: |
         PREFIX pv: <http://ld.company.org/prod-vocab/>
@@ -1211,16 +1218,163 @@ questions:
         }
         ORDER BY DESC(?width)
 
-  # - id: xx
-  #   question:
-  #     en: ...
-  #   features:
-  #     - ...
-  #   classes:
-  #     - ...
-  #   properties:
-  #     - ...
-  #   query:
-  #     sparql: |
-  #       ...
+  - id: 45
+    question:
+      en: Which supplier delivers the most reliable Inductor?
+    features:
+      - SELECT
+      - ORDER
+      - LIMIT
+    classes:
+      - :Hardware
+      - :Supplier
+      - :ProductCategory
+    properties:
+      - :hasCategory
+      - :reliabilityIndex
+      - :hasSupplier
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?hardware pv:hasCategory <http://ld.company.org/prod-instances/prod-cat-Inductor> .
+          ?hardware pv:reliabilityIndex ?reliabilityIndex .
+          ?hardware pv:hasSupplier ?result .
+        }
+        ORDER BY DESC(?reliabilityIndex)
+        LIMIT 1
+
+  - id: 46
+    question:
+      en: What are the top 5 suppliers with best average reliability over their products.
+    features:
+      - SELECT
+      - GROUP
+      - AVG
+      - ORDER
+      - LIMIT
+    classes:
+      - :Supplier
+      - :Product
+    properties:
+      - :reliabilityIndex
+      - :hasSupplier
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result (AVG(?reliabilityIndex) AS ?averageReliabilityIndex)
+        WHERE
+        {
+          ?hardware pv:reliabilityIndex ?reliabilityIndex .
+          ?hardware pv:hasSupplier ?result .
+        }
+        GROUP BY ?result
+        ORDER BY DESC(?averageReliabilityIndex)
+        LIMIT 5
+
+
+  - id: 47
+    question:
+      en: From which countries are the BOM parts of our SkySync MechWave delivered?
+    features:
+      - SELECT
+    classes:
+      - :BillOfMaterial
+      - :BomPart
+      - :Product
+      - :Supplier
+    properties:
+      - :hasBomPart
+      - :hasPart
+      - :hasSupplier
+      - :country
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/bom-17> pv:hasBomPart ?bomPart .
+          ?bomPart pv:hasPart ?product .
+          ?product pv:hasSupplier ?supplier .
+          ?supplier pv:country ?result
+        }
+
+  - id: 48
+    question:
+      en: Show me all BOMs which have at least on part from a polish supplier.
+    features:
+      - SELECT
+    classes:
+      - :BillOfMaterial
+      - :BomPart
+      - :Product
+      - :Supplier
+    properties:
+      - :hasBomPart
+      - :hasPart
+      - :hasSupplier
+      - :country
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result
+        WHERE
+        {
+          ?result a pv:BillOfMaterial .
+          ?result pv:hasBomPart ?bomPart .
+          ?bomPart pv:hasPart ?product .
+          ?product pv:hasSupplier ?supplier .
+          ?supplier pv:country <http://dbpedia.org/resource/Poland> .
+        }
+
+  - id: 49
+    question:
+      en: How many suppliers can deliver alternative compatible products for the K367 Strain Encoder?
+    features:
+      - SELECT
+      - COUNT
+    classes:
+      - :Product
+      - :Supplier
+    properties:
+      - :compatibleProduct
+      - :hasSupplier
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT (COUNT(?supplier) AS ?result)
+        WHERE
+        {
+          <http://ld.company.org/prod-instances/hw-K367-1320550> pv:compatibleProduct ?alternative .
+          ?alternative pv:hasSupplier ?supplier .
+        }
+
+  - id: 50
+    question:
+      en: Which department is resposible for the most product and how many product are this?
+    features:
+      - SELECT
+      - GROUP
+      - COUNT
+      - ORDER
+      - LIMIT
+    classes:
+      - :Department
+      - :Product
+    properties:
+      - :responsibleFor
+    query:
+      sparql: |
+        PREFIX pv: <http://ld.company.org/prod-vocab/>
+        SELECT DISTINCT ?result (COUNT(?result) AS ?count)
+        WHERE
+        {
+          ?result pv:responsibleFor ?product .
+        }
+        GROUP BY ?result
+        ORDER BY DESC(?count)
+        LIMIT 1
 
