@@ -24,17 +24,17 @@ tasks:
   table:generate:
     desc: Generate the paper table
     cmds:
-      - cmemc query execute ./queries/query-features-used.rq --accept text/csv
+      - cmemc query execute ./misc/query-features-used.rq --accept text/csv
 
   images:generate:
     desc: Generate the paper images
     cmds:
       - >
-        cmemc query execute ./queries/queries-per-property.rq --accept text/csv |
-        ./make_chart.py -o queries-per-property.svg
+        cmemc query execute ./misc/queries-per-property.rq --accept text/csv |
+        misc/make_chart.py -o queries-per-property.svg
       - >
-        cmemc query execute ./queries/queries-per-class.rq --accept text/csv |
-        ./make_chart.py -o queries-per-class.svg
+        cmemc query execute ./misc/queries-per-class.rq --accept text/csv |
+        misc/make_chart.py -o queries-per-class.svg
 
   questions:list:
     desc: List all questions
