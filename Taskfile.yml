@@ -7,7 +7,7 @@ dotenv: [".env", "{{.ENV_FILE}}"]
 vars:
   GRAPHS_DIR: graphs
   GRAPH_INTEGRATION: https://text2sparql.aksw.org/2025/corporate/
-  PROJECTS_DIR: projects
+  PROJECTS_DIR: misc
   PROJECTS: >
     text2sparql-questions
   PACKAGES: >
@@ -60,7 +60,8 @@ tasks:
   project:export:build:
     summary: Export all build projects
     cmds:
-      - rm -rf {{.PROJECTS_DIR}}
+      - for: {var: PROJECTS, split: " "}
+        cmd: rm -rf {{.PROJECTS_DIR}}/{{.ITEM}}
       - for: {var: PROJECTS, split: " "}
         cmd: >
           cmemc project export
