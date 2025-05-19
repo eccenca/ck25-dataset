@@ -633,6 +633,7 @@ questions:
       - OPTIONAL
       - EXISTS
       - ORDER
+      - RESULT_ORDER_MATTERS
     classes:
       - :Employee
     properties:
@@ -950,6 +951,7 @@ questions:
       - SELECT
       - GROUP
       - ORDER
+      - RESULT_ORDER_MATTERS
       - COUNT
       - SUM
       - HAVING
