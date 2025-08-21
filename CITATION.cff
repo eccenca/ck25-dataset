@@ -1,0 +1,32 @@
+abstract: <p>Question answering over Linked Data / RDF-based Knowledge Graphs is a
+  subdiscipline of Natural Language Processing. The specific challenge of Text 2 SPARQL
+  focuses on translating natural language&nbsp;questions into SPARQL queries, a structured
+  query language for interacting with RDF-based Knowledge Graphs. In this paper, we
+  present a&nbsp;dataset consisting of a knowledge graph, an ontology, and a query
+  catalog, which can be used as a reference for Text 2 SPARQL techniques&nbsp;such
+  as LLM RAG-based approaches. The dataset was created for the&nbsp;First International
+  TEXT2SPARQL Challenge, which we organized as&nbsp;part of the 4th International
+  Workshop on LLM-Integrated Knowledge&nbsp;Graph Generation from Text (Text2KG) at
+  the ESWC2025.</p>
+authors:
+- affiliation: eccenca GmbH
+  family-names: Tramp
+  given-names: Sebastian
+  orcid: 0000-0003-4707-2864
+- affiliation: eccenca GmbH
+  family-names: Pietzsch
+  given-names: "Ren\xE9"
+cff-version: 1.2.0
+date-released: '2025-06-12'
+doi: 10.5281/zenodo.16912605
+keywords:
+- Benchmark
+- Natural Language Processing
+- Question Answering
+- Knowledge Graphs
+- Large Language Models
+license:
+- cc-by-4.0
+message: If you use this work, please cite it using the metadata from this file.
+title: The CK25 Corporate Knowledge Reference Dataset for Benchmarking Text 2 SPARQL
+  Question Answering Approaches
