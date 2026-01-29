@@ -1,0 +1,93 @@
+{
+  "$schema": "https://marketplace.eccenca.dev/api/manifest",
+  "package_id": "eccenca-ck25-dataset",
+  "package_version": "1.1.0",
+  "metadata": {
+    "name": "CK25 - TEXT2SPARQL Reference Dataset",
+    "description": "CK25 is a reference dataset for benchmarking Text 2 SPARQL Question Answering Approaches on Corporate Knowledge Graphs.",
+    "license": "CC-BY-4.0",
+    "comment": null,
+    "tags": [
+        "corporate knowledge",
+        "benchmark",
+        "question answering",
+        "text2sparql"
+    ],
+    "urls": [
+        {
+            "url_ref": "https://zenodo.org/records/16912605",
+            "url_role": "documentation"
+        },
+        {
+            "url_ref": "https://github.com/eccenca/ck25-dataset",
+            "url_role": "source"
+        },
+        {
+            "url_ref": "https://github.com/eccenca/ck25-dataset/issues",
+            "url_role": "issues"
+        }
+    ],
+    "agents": [
+      {
+        "agent_type": "person",
+        "agent_role": "author",
+        "agent_name": "Sebastian Tramp",
+        "agent_url": "https://github.com/seebi"
+      },
+      {
+        "agent_type": "person",
+        "agent_role": "author",
+        "agent_name": "René Pietzsch",
+        "agent_url": "https://github.com/rpietzsch"
+      }
+    ]
+  },
+  "dependencies": [
+        {
+            "dependency_type": "python-package",
+            "pypi_id": "cmem-plugin-yaml"
+        }
+    ],
+  "files": [
+    {
+      "file_path": "README.md",
+      "file_type": "text",
+      "file_role": "readme"
+    },
+    {
+      "file_path": "CHANGELOG.md",
+      "file_type": "text",
+      "file_role": "changelog"
+    },
+    {
+      "file_path": "misc/logo.png",
+      "file_type": "image",
+      "file_role": "icon"
+    },
+    {
+      "file_path": "LICENSE",
+      "file_type": "text",
+      "file_role": "license"
+    },
+    {
+      "file_path": "misc/text2sparql-questions.zip",
+      "file_type": "project",
+      "project_id": "text2sparql-questions"
+    },
+    {
+      "file_path": "graphs/prod-inst.ttl",
+      "file_type": "graph",
+      "graph_iri": "http://ld.company.org/prod-inst/",
+      "import_into": [],
+      "register_as_vocabulary": false
+    },
+    {
+      "file_path": "graphs/text2sparql.ttl",
+      "file_type": "graph",
+      "graph_iri": "https://text2sparql.aksw.org/2025/corporate/",
+      "import_into": [],
+      "register_as_vocabulary": false
+    }
+  ],
+  "package_type": "project"
+}
