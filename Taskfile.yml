@@ -51,22 +51,25 @@ tasks:
       - cmemc dataset upload text2sparql-questions:questions-yml questions.yml
       - cmemc workflow execute text2sparql-questions:import-questions --wait
 
-  package:export:
-    desc: Export the Package
+  clean:
+    desc: Cleanup working directory
     cmds:
-      - cmemc package export eccenca-ck25-dataset
+      - rm -f *.cpa misc/*.zip
 
   package:build:
     desc: Build the Package Archive
     cmds:
       - rm -f *.cpa misc/*.zip
-      - cd misc; zip -9 text2sparql-questions.zip text2sparql-questions
-      - cmemc package build . --replace
+      - cd misc; zip -9 -r text2sparql-questions.zip text2sparql-questions
+      - cmemc package build . --replace --version {{.VERSION}}
+    vars:
+      VERSION:
+        sh: git describe --always --dirty
 
   package:import:
     desc: Import the Package
     cmds:
-      - rm -f *.cpa
-      - cmemc package build . --replace
-      - cmemc package install --input *.cpa
+      - task: clean
+      - task: package:build
+      - cmemc package install --replace --input *.cpa
 

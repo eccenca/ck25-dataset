@@ -1,7 +1,7 @@
 {
   "$schema": "https://marketplace.eccenca.dev/api/manifest",
-  "package_id": "eccenca-ck25-dataset",
-  "package_version": "1.1.0",
+  "package_id": "ecc-ck25-dataset",
+  "package_version": "0.0.0",
   "metadata": {
     "name": "CK25 - TEXT2SPARQL Reference Dataset",
     "description": "CK25 is a reference dataset for benchmarking Text 2 SPARQL Question Answering Approaches on Corporate Knowledge Graphs.",
@@ -73,6 +73,13 @@
       "file_path": "misc/text2sparql-questions.zip",
       "file_type": "project",
       "project_id": "text2sparql-questions"
+    },
+    {
+      "file_path": "graphs/queries.ttl",
+      "file_type": "graph",
+      "graph_iri": "https://text2sparql.aksw.org/2025/corporate/queries/",
+      "import_into": [],
+      "register_as_vocabulary": false
     },
     {
       "file_path": "graphs/prod-inst.ttl",
