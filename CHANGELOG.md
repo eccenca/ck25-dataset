@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 - The file format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [SemVer v2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] 2026-01-31
+
+### Added
+
+- Marketplace Package
+
+
 ## [1.0.1] 2025-05-19
 
 ### Added

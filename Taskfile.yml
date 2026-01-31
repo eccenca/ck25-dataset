@@ -51,87 +51,25 @@ tasks:
       - cmemc dataset upload text2sparql-questions:questions-yml questions.yml
       - cmemc workflow execute text2sparql-questions:import-questions --wait
 
-  project:export:
-    desc: Export the project
+  clean:
+    desc: Cleanup working directory
     cmds:
-      - task: project:export:build
-      - task: project:export:graphs
+      - rm -f *.cpa misc/*.zip
 
-  project:export:build:
-    summary: Export all build projects
+  package:build:
+    desc: Build the Package Archive
     cmds:
-      - for: {var: PROJECTS, split: " "}
-        cmd: rm -rf {{.PROJECTS_DIR}}/{{.ITEM}}
-      - for: {var: PROJECTS, split: " "}
-        cmd: >
-          cmemc project export
-          --output-dir {{.PROJECTS_DIR}}
-          --extract
-          {{.ITEM}}
-
-  project:export:graphs:
-    summary: Export all graphs
-    cmds:
-      - rm -rf {{.GRAPHS_DIR}}
-      - >
-        cmemc graph export
-        --output-dir {{.GRAPHS_DIR}}
-        --filename-template \{\{iriname\}\}
-        --mime-type text/turtle
-        --include-imports
-        {{.GRAPH_INTEGRATION}}
-
-  project:import:
-    desc: Import the project
-    cmds:
-      - task: project:import:graphs
-      - task: project:import:build
-
-  project:import:graphs:
-    summary: Import all graphs
-    cmds:
-      - cmemc graph import --replace {{.GRAPHS_DIR}}
-      - >
-        cmemc graph import --replace
-        https://text2sparql.aksw.org/data/prod-inst.ttl
-        http://ld.company.org/prod-inst/
-      - >
-        cmemc graph import
-        https://text2sparql.aksw.org/data/prod-vocab.ttl
-        http://ld.company.org/prod-inst/
-
-  project:import:build:
-    summary: Import all build projects and packages
-    cmds:
-      - for: {var: PACKAGES, split: " "}
-        cmd: cmemc admin workspace python install {{.ITEM}}
-      - for: {var: PROJECTS, split: " "}
-        cmd: cmemc project import --replace {{.PROJECTS_DIR}}/{{.ITEM}}
-      - task: questions:update
-
-  project:delete:
-    desc: Delete the project
-    cmds:
-      - task: project:delete:build
-      - task: project:delete:graphs
-
-  project:delete:graphs:
-    summary: Delete all graphs
+      - rm -f *.cpa misc/*.zip
+      - cd misc; zip -9 -r text2sparql-questions.zip text2sparql-questions
+      - cmemc package build . --replace --version {{.VERSION}}
     vars:
-      GRAPHS:
-        sh: cat graphs/*.graph
-    cmds:
-      - for: {var: GRAPHS, split: "\n"}
-        cmd: cmemc graph delete {{.ITEM}}
-        ignore_error: true
+      VERSION:
+        sh: git describe --always --dirty
 
-  project:delete:build:
-    summary: Delete all build projects and packages
+  package:import:
+    desc: Import the Package
     cmds:
-      - for: {var: PACKAGES, split: " "}
-        cmd: cmemc admin workspace python uninstall {{.ITEM}}
-        ignore_error: true
-      - for: {var: PROJECTS, split: " "}
-        cmd: cmemc project delete {{.ITEM}}
-        ignore_error: true
+      - task: clean
+      - task: package:build
+      - cmemc package install --replace --input *.cpa
 
