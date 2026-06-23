@@ -59,9 +59,8 @@ tasks:
   package:build:
     desc: Build the Package Archive
     cmds:
-      - rm -f *.cpa misc/*.zip
-      - cd misc; zip -9 -r text2sparql-questions.zip text2sparql-questions
-      - cmemc package build . --replace --version {{.VERSION}}
+      - rm -f *.cpa
+      - cmemc package build package --replace --version {{.VERSION}}
     vars:
       VERSION:
         sh: git describe --always --dirty

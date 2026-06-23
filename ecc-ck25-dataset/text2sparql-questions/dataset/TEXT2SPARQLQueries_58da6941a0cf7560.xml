@@ -13,6 +13,7 @@
   <Param name="optimizedRetrieve" xml:space="preserve"><![CDATA[true]]></Param>
   <Param name="pauseTime" xml:space="preserve"><![CDATA[0]]></Param>
   <Param name="retryCount" xml:space="preserve"><![CDATA[3]]></Param>
+  <Param name="streamingUpload" xml:space="preserve"><![CDATA[false]]></Param>
   <Param name="strategy" xml:space="preserve"><![CDATA[parallel]]></Param>
   <Param name="retryPause" xml:space="preserve"><![CDATA[1000]]></Param>
   <Param name="endpoint" xml:space="preserve"><![CDATA[default]]></Param>

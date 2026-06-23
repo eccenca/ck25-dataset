@@ -12,6 +12,7 @@
   <Param name="streaming" xml:space="preserve"><![CDATA[true]]></Param>
   <Param name="maxDepth" xml:space="preserve"><![CDATA[15]]></Param>
   <Param name="basePath" xml:space="preserve"><![CDATA[]]></Param>
+  <Param name="navigateIntoArrays" xml:space="preserve"><![CDATA[true]]></Param>
   <Param name="template" xml:space="preserve"><![CDATA[{{output}}]]></Param>
   <Param name="file" xml:space="preserve"><![CDATA[questions.json]]></Param>
   <Param name="uriPattern" xml:space="preserve"><![CDATA[]]></Param>
